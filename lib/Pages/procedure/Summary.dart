@@ -9,6 +9,7 @@ import '../Auth/SignUp.dart';
 import '../widgets/AppBarCustom.dart';
 import '../widgets/TicketFinal.dart';
 import '../widgets/clipPath.dart';
+import '../widgets/drawer.dart';
 import 'Home.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:permission_handler/permission_handler.dart';
@@ -132,6 +133,7 @@ class TicketSummary extends StatelessWidget {
             name: const ["Home"],
           ),
       ]),
+      drawer: const CustomDrawer(), //side panel
     );
   }
 }

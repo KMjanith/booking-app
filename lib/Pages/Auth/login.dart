@@ -5,6 +5,7 @@ import '../../servises/login_api.dart';
 import '../procedure/Home.dart';
 import '../widgets/AppBarCustom.dart';
 import '../widgets/clipPath.dart';
+import '../widgets/drawer.dart';
 import '../widgets/input_fields/normal_input.dart';
 import 'ResetPassword.dart';
 import 'SignUp.dart';
@@ -135,6 +136,7 @@ class LoginPage extends StatelessWidget {
           ),
         ],
       ),
+      drawer: const CustomDrawer(), //side panel
     );
   }
 

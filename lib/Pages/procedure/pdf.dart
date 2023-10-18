@@ -8,6 +8,7 @@ import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
 
 import '../widgets/TicketFinal.dart';
+import '../widgets/drawer.dart';
 import 'Home.dart';
 
 
@@ -84,6 +85,7 @@ class PdfMaker extends StatelessWidget {
           )
         ],
       ),
+      drawer: const CustomDrawer(), //side panel
     );
   }
 }

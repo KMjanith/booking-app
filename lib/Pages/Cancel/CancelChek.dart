@@ -4,6 +4,7 @@ import '../../servises/Cancel_api.dart';
 import '../procedure/Home.dart';
 import '../widgets/AppBarCustom.dart';
 import '../widgets/clipPath.dart';
+import '../widgets/drawer.dart';
 import '../widgets/input_fields/normal_input.dart';
 
 // ignore: must_be_immutable
@@ -106,6 +107,7 @@ class CancelCheak extends StatelessWidget {
           CustomAppBar(page: [HomePage()], name: ["Home"]),
         ],
       ),
+      drawer: const CustomDrawer(), //side panel
     );
   }
 }

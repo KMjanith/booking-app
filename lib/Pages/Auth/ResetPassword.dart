@@ -4,6 +4,7 @@ import '../../servises/Pass_Reset_Api.dart';
 import '../procedure/Home.dart';
 import '../widgets/AppBarCustom.dart';
 import '../widgets/clipPath.dart';
+import '../widgets/drawer.dart';
 import '../widgets/input_fields/normal_input.dart';
 import 'SignUp.dart';
 
@@ -100,6 +101,7 @@ class PasswordReset extends StatelessWidget {
           ),
         ],
       ),
+      drawer: const CustomDrawer(), //side panel
     );
   }
 }

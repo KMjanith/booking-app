@@ -8,6 +8,7 @@ import '../../servises/register_api.dart';
 import '../procedure/Home.dart';
 import '../widgets/AppBarCustom.dart';
 import '../widgets/clipPath.dart';
+import '../widgets/drawer.dart';
 import '../widgets/input_fields/normal_input.dart';
 import 'login.dart';
 
@@ -183,6 +184,7 @@ class SignUpPage extends StatelessWidget {
           ),
         ],
       ),
+      drawer: const CustomDrawer(), //side panel
     );
   }
 

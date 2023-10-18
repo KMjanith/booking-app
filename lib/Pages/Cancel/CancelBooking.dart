@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../servises/login_api.dart';
 import '../widgets/AppBarCustom.dart';
 import '../widgets/clipPath.dart';
+import '../widgets/drawer.dart';
 import '../widgets/ticketAttri.dart';
 import '../procedure/Home.dart';
 import 'CancelConfirm.dart';
@@ -170,6 +171,7 @@ class CancelBooking extends StatelessWidget {
           CustomAppBar(page: [HomePage()], name: ["Home"]),
         ],
       ),
+      drawer: const CustomDrawer(), //side panel
     );
   }
 

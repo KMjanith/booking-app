@@ -10,6 +10,7 @@ import 'package:screenshot/screenshot.dart';
 import '../../servises/Cancel_api.dart';
 import '../widgets/AppBarCustom.dart';
 import '../widgets/clipPath.dart';
+import '../widgets/drawer.dart';
 import '../widgets/input_fields/normal_input.dart';
 import 'Home.dart';
 
@@ -111,6 +112,7 @@ class _SeeQrState extends State<SeeQr> {
           CustomAppBar(page: [HomePage()], name: ["Home"]),
         ],
       ),
+      drawer: const CustomDrawer(), //side panel
     );
   }
 

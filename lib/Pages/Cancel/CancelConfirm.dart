@@ -4,6 +4,7 @@ import '../../servises/Cancel_api.dart';
 import '../widgets/AppBarCustom.dart';
 import '../widgets/clipPath.dart';
 import '../procedure/Home.dart';
+import '../widgets/drawer.dart';
 
 // ignore: must_be_immutable
 class CancelCOnfirm extends StatelessWidget {
@@ -80,6 +81,7 @@ class CancelCOnfirm extends StatelessWidget {
           CustomAppBar(page: [HomePage()], name: ["Home"]),
         ],
       ),
+      drawer: const CustomDrawer(), //side panel
     );
   }
 }

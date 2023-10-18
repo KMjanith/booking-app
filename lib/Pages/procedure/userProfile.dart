@@ -146,6 +146,29 @@ class _MyProfileState extends State<MyProfile> {
                                       const SizedBox(
                                         height: 20,
                                       ),
+
+                                      Container(
+                                        //search train button
+                                        decoration: BoxDecoration(
+                                          color:
+                                              Color.fromARGB(255, 199, 0, 0),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        child: TextButton(
+                                          child: const Text("Delete Account",
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold)),
+                                          onPressed: () async {
+                                            
+                                          },
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
                                     ],
                                   ),
                                 ),
