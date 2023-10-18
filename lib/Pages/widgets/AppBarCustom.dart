@@ -30,7 +30,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                 height: 60,
                 width: 400,
                 decoration: BoxDecoration(
-                    color: Colors.black12,
+             
                     borderRadius: BorderRadius.circular(20)),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -68,7 +68,12 @@ class _CustomAppBarState extends State<CustomAppBar> {
                                     }
                                     
                                   },
-                                  child: Text(
+                                  child: widget.name[i] == 'Home' ? const Icon(
+                                    Icons.home,
+                                    size: 30,
+                                    color: Color.fromARGB(255, 255, 255, 255),
+                                  ):
+                                  Text(
                                     widget.name[i],
                                     style: const TextStyle(
                                         fontSize: 20, color: Colors.white),

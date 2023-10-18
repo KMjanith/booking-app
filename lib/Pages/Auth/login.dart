@@ -51,7 +51,7 @@ class LoginPage extends StatelessWidget {
                             color: Color.fromARGB(255, 92, 7, 47))),
                   ),
 
-                  //Image.asset("Assets/login.png"),
+                  Image.asset("Assets/login.png"),
 
                   const SizedBox(
                     height: 10,

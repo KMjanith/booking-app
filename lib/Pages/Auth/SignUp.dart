@@ -50,10 +50,17 @@ class SignUpPage extends StatelessWidget {
                               color: Color.fromARGB(255, 92, 7, 47))),
                     ),
                   ),
-                  const SizedBox(
-                    height: 15,
-                  ),
+                  
                   //Image.asset("Assets/register.png"),
+                  
+                  Text("Sign up to book your train ticket in just a few clicks.",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: Color.fromARGB(255, 92, 7, 47))),
+                          const SizedBox(
+                    height: 10,
+                  ),
                   //input fields
                   NormalInput(
                     controller: firstName,

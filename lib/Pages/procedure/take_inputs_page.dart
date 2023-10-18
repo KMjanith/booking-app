@@ -160,7 +160,7 @@ class FirstPage extends StatelessWidget {
           if (!AuthManager.isLoggedIn)
             CustomAppBar(
               page: [LoginPage(), SignUpPage()],
-              name: const ["Log in", "Sign up"],
+              name: const ["Login", "Sign up"],
             ),
           if (AuthManager.isLoggedIn)
             CustomAppBar(

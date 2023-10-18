@@ -142,11 +142,7 @@ class HomePage extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                               color: Color.fromARGB(255, 0, 0, 0)),
                         ),
-                        Icon(
-                          Icons.add_location_alt,
-                          color: Color.fromARGB(255, 0, 0, 0),
-                          size: 30,
-                        ),
+                        
                       ],
                     ),
                   ),
@@ -192,7 +188,7 @@ class HomePage extends StatelessWidget {
           if (!AuthManager.isLoggedIn)
             CustomAppBar(
               page: [LoginPage(), SignUpPage()],
-              name: const ["Log in", "Sign up"],
+              name: const ["Login", "Sign up"],
             ),
           if (AuthManager.isLoggedIn)
             CustomAppBar(

@@ -91,7 +91,7 @@ class _MyProfileState extends State<MyProfile> {
                     child: ListView(
                       children: [
                         const SizedBox(
-                          height: 40,
+                          height: 80,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
