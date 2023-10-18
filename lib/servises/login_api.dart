@@ -1,0 +1,111 @@
+import 'dart:math';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+import 'package:quickalert/quickalert.dart';
+import 'package:quickalert/widgets/quickalert_dialog.dart';
+import 'dart:convert';
+import '../Pages/Auth/login.dart';
+import '../Pages/procedure/Home.dart';
+import 'AuthManager.dart';
+import 'DatabaseHandeling/constant.dart';
+import '../Pages/Auth/OTPdialog.dart';
+
+class ApiServiceLogin {
+  //late PaswordReset paswordReset;
+  late LoginPage createdOTP;
+  static const String baseUrl = 'http://$baseUrl_1:4000/login';
+
+  Future<void> login(BuildContext context, String email, String password,
+      http.Client client) async {
+    final Map<String, dynamic> requestBody = {
+      'email': email,
+      'password': password,
+    };
+
+    final response = await http.post(
+      Uri.parse(baseUrl),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode(requestBody), // Encode the map as JSON
+    );
+
+    print(response.body);
+    dynamic token = jsonDecode(response.body);
+    print(token["userID"]);
+
+    AuthManager.token = response.body; //store the token
+    AuthManager.login(); //setting the logged in user true
+
+    if (response.statusCode == 200) {
+      // return LoginModel.fromJson(jsonDecode(response.body));
+
+      // ignore: use_build_context_synchronously
+      QuickAlert.show(
+        context: context,
+        type: QuickAlertType.success,
+        title: 'Great',
+        text: 'Succesfully logged in',
+        onConfirmBtnTap: () {
+          Get.offAll(HomePage());
+        },
+      );
+    } else {
+      // ignore: use_build_context_synchronously
+      //throw Exception('Failed to load album'); // Update the error message
+      // ignore: use_build_context_synchronously
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          title: 'Oops..',
+          text:
+              'Check username and pasword again or verify your email'); // Update the error message
+    }
+
+    //changes - login eke return type eka LoginModel kiyala set karala thiyenne
+  }
+
+  //Endpoint to send OTP to the given email
+  static const String baseUrlforOTP = 'http://$baseUrl_1:4000/login/sendOTP';
+  static bool verified = false;
+
+  Future<void> Sendotp(BuildContext context, String email, Widget Page) async {
+    final random = Random();
+    final otp = (1000 + random.nextInt(9000)).toString();
+    print(otp); // This will print a 4-digit OTP
+
+    final Map<String, dynamic> requestBody = {
+      'OTP': otp,
+      'recipient_email': email,
+    };
+
+    final response = await http.post(
+      Uri.parse(baseUrlforOTP),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode(requestBody), // Encode the map as JSON
+    );
+
+    print(response.statusCode);
+    print(response.body);
+
+    if (response.statusCode != 200) {
+      //ignore: use_build_context_synchronously
+      throw Exception(QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          title: 'Oops..',
+          text: response.body)); // Update the error message
+    } else {
+      //object to invoke the verification alertbox
+      Get.off(OTPdialogBox(
+        // page: PasswordReset(email: email),
+        page: Page,
+        email: email,
+        OriginalOTP: otp,
+      ));
+    }
+
+    // ignore: use_build_context_synchronously
+
+    //show the OTPInput dialogBox
+  }
+}
