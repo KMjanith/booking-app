@@ -27,7 +27,6 @@ class FirstPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
       body: Stack(
         children: [
           /*Container(
@@ -140,6 +139,14 @@ class FirstPage extends StatelessWidget {
                               text: 'Sorry,some fields are empty',
                             );
                             return;
+                          }else if(_fromControler.text == _toControler.text){
+                            QuickAlert.show(
+                              context: context,
+                              type: QuickAlertType.error,
+                              title: 'Oops...',
+                              text: 'both stations are same.choose deferent stations',
+                            );
+                               return;
                           }
                           //print(_DateController.text);
                           

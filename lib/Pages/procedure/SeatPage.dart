@@ -5,6 +5,7 @@ import '../../Models/Trainmodel.dart';
 import '../widgets/AppBarCustom.dart';
 import '../widgets/Seatplan.dart';
 import '../widgets/bottomNavigator.dart';
+import '../widgets/clipPath.dart';
 import '../widgets/drawer.dart';
 import 'CustomerDetails.dart';
 import 'Home.dart';
@@ -42,7 +43,7 @@ class SeatView extends StatelessWidget {
       //appBar: AppBar(title: Text('Seat View'),),
       body: Stack(
         children: [
-          
+           const clipPath(), //Custom clipPath
           Positioned(
             top: 120,
             right: 30,

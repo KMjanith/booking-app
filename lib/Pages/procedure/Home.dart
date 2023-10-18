@@ -25,6 +25,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       bottomNavigationBar: Bottom_NavigationBar(),
       body: Stack(
+        
         children: [
           
           const clipPath(),  //Custom clipPath

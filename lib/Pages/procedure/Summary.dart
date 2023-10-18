@@ -49,7 +49,190 @@ class TicketSummary extends StatelessWidget {
                               child: pw.Column(children: [
                                 pw.Container(
                                   child: pw.Column(
-                                    children: [],
+                                    children: [
+                                      pw.Text(
+                                        "Train Ticket",
+                                        style: pw.TextStyle(
+                                            fontSize: 35,
+                                            fontWeight: pw.FontWeight.bold),
+                                      ),
+                                      pw.SizedBox(
+                                        height: 20,
+                                      ),
+                                      pw.Text(
+                                        "Reference Number: ${finalTicket.RefNumber}",
+                                        style: pw.TextStyle(
+                                            fontSize: 25,
+                                            fontWeight: pw.FontWeight.bold),
+                                      ),
+                                      pw.SizedBox(
+                                        height: 10,
+                                      ),
+                                      pw.Text(
+                                        "Train No: ${finalTicket.ticket.trainNo}",
+                                        style: pw.TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: pw.FontWeight.bold),
+                                      ),
+                                      pw.SizedBox(
+                                        height: 10,
+                                      ),
+                                      pw.Text(
+                                        "Train Name: ${finalTicket.ticket.trainName}",
+                                        style: pw.TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: pw.FontWeight.bold),
+                                      ),
+                                      pw.SizedBox(
+                                        height: 10,
+                                      ),
+                                      pw.Text(
+                                        "Origin: ${finalTicket.ticket.Orign}",
+                                        style: pw.TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: pw.FontWeight.bold),
+                                      ),
+                                      pw.SizedBox(
+                                        height: 10,
+                                      ),
+                                      pw.Text(
+                                        "Destination: ${finalTicket.ticket.Destination}",
+                                        style: pw.TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: pw.FontWeight.bold),
+                                      ),
+                                      pw.SizedBox(
+                                        height: 10,
+                                      ),
+                                      pw.Text(
+                                        "Time from -> to: ${finalTicket.ticket.timeFromTO[0]} -> ${finalTicket.ticket.timeFromTO[1]}",
+                                        style: pw.TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: pw.FontWeight.bold),
+                                      ),
+                                      pw.SizedBox(
+                                        height: 10,
+                                      ),
+                                      pw.Text(
+                                        "Date: ${finalTicket.ticket.Date}",
+                                        style: pw.TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: pw.FontWeight.bold),
+                                      ),
+                                      pw.SizedBox(
+                                        height: 10,
+                                      ),
+                                      pw.Text(
+                                        "FirstName: ${finalTicket.ticket.firstName}",
+                                        style: pw.TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: pw.FontWeight.bold),
+                                      ),
+                                      
+                                      pw.SizedBox(
+                                        height: 10,
+                                      ),
+                                      pw.Text(
+                                        "LastName: ${finalTicket.ticket.lastName}",
+                                        style: pw.TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: pw.FontWeight.bold),
+                                      ),
+                                      
+                                      pw.SizedBox(
+                                        height: 10,
+                                      ),
+                                      pw.Text(
+                                        "mobile: ${finalTicket.ticket.mobileNo}",
+                                        style: pw.TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: pw.FontWeight.bold),
+                                      ),
+
+                                      pw.SizedBox(
+                                        height: 10,
+                                      ),
+                                      pw.Text(
+                                        "Passenger count: ${finalTicket.ticket.PassengerCount.toString()}",
+                                        style: pw.TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: pw.FontWeight.bold),
+                                      ),
+
+                                      pw.SizedBox(
+                                        height: 10,
+                                      ),
+                                      pw.Column(children: [
+                                         pw.Text(
+                                          "Class Type: ${finalTicket.ticket.classType}",
+                                          style: pw.TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: pw.FontWeight.bold),
+                                        ),
+                                         pw.Text(
+                                          "Class Type: ${finalTicket.ticket.classType}",
+                                          style: pw.TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: pw.FontWeight.bold),
+                                        ),
+                                      ]),
+                                      pw.Text(
+                                        "Class Type: ${finalTicket.ticket.classType}",
+                                        style: pw.TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: pw.FontWeight.bold),
+                                      ),
+
+                                      pw.SizedBox(
+                                        height: 10,
+                                      ),
+                                      pw.Text(
+                                        "Total Price: ${finalTicket.ticket.Price.toString()}",
+                                        style: pw.TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: pw.FontWeight.bold),
+                                      ),
+
+                                      pw.SizedBox(
+                                        height: 10,
+                                      ),
+                                      pw.Text(
+                                        "Seat Numbers: ${finalTicket.ticket.SeatNumbers.join(', ')}",
+                                        style: pw.TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: pw.FontWeight.bold),
+                                      ),
+
+                                      pw.SizedBox(
+                                        height: 10,
+                                      ),
+                                      pw.Text(
+                                        "email: ${finalTicket.ticket.email}",
+                                        style: pw.TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: pw.FontWeight.bold),
+                                      ),
+
+                                      pw.SizedBox(
+                                        height: 10,
+                                      ),
+                                      pw.Text(
+                                        "NIC: ${finalTicket.ticket.NIC}",
+                                        style: pw.TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: pw.FontWeight.bold),
+                                      ),
+
+                                      pw.SizedBox(
+                                        height: 40,
+                                      ),
+                                      pw.Text(
+                                        "Thank you for using our service!!",
+                                        style: pw.TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: pw.FontWeight.bold),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ]),
