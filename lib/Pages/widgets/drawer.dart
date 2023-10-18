@@ -1,3 +1,4 @@
+import 'package:booking_app/Pages/procedure/userProfile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,7 +8,6 @@ import '../procedure/Home.dart';
 import '../Auth/SignUp.dart';
 import '../Auth/login.dart';
 import '../procedure/SeeQr.dart';
-import '../procedure/take_inputs_page.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -47,8 +47,8 @@ class CustomDrawer extends StatelessWidget {
                   ),
                   ListTile(
                     leading: Icon(Icons.history),
-                    title: Text("Payment History"),
-                    onTap: () => Get.to(FirstPage()),
+                    title: Text("My profile"),
+                    onTap: () => Get.to(MyProfile()),
                   ),
                   ListTile(
                     leading: Icon(Icons.color_lens),

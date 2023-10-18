@@ -17,7 +17,6 @@ import '../widgets/input_fields/normal_input.dart';
 import 'Home.dart';
 import 'PaymentFom.dart';
 import 'package:http/http.dart' as http;
-
 import 'take_inputs_page.dart';
 
 // ignore: must_be_immutable
@@ -46,13 +45,14 @@ class CustomerDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //print(jsonDecode(AuthManager.token)["userID"]);
-    if (AuthManager.isLoggedIn) {
+    if(AuthManager.isLoggedIn){
       loginDetails(jsonDecode(AuthManager.token)["userID"]);
     }
 
     return Scaffold(
       body: Stack(
         children: [
+         
           ClipPath(
             clipper: MyCustomClipperLeft(),
             child: Container(
@@ -100,146 +100,151 @@ class CustomerDetails extends StatelessWidget {
                     "Total Price: LKR" + price.toString(),
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   )),
-                  const SizedBox(height: 10),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        //fsrt name
+                        Expanded(
+                          child: NormalInput(
+                              icon: const Icon(Icons.person_2_rounded),
+                              controller: firstName,
+                              labelText: 'First Name',
+                              obscureText: false),
+                        ),
+                        const SizedBox(width: 10),
 
-                  //fsrt name
+                        //lastname
+                        Expanded(
+                          child: NormalInput(
+                              icon: const Icon(Icons.person_2_rounded),
+                              controller: lastName,
+                              labelText: 'Last Name',
+                              obscureText: false),
+                        ),
+                      ],
+                    ),
+                  ),
 
-                  NormalInput(
-                      icon: const Icon(Icons.person_2_rounded),
-                      controller: firstName,
-                      labelText: 'First Name',
-                      obscureText: false),
-
-                  const SizedBox(height: 10),
-
-                  //lastname
-
-                  NormalInput(
-                      icon: const Icon(Icons.person_2_rounded),
-                      controller: lastName,
-                      labelText: 'Last Name',
-                      obscureText: false),
-                  const SizedBox(height: 10),
                   //email
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Expanded(
+                      child: NormalInput(
+                          icon: const Icon(Icons.email_rounded),
+                          controller: email, // Replace with your controller
+                          labelText: 'Email',
+                          obscureText: false),
+                    ),
+                  ),
 
-                  NormalInput(
-                      icon: const Icon(Icons.email_rounded),
-                      controller: email, // Replace with your controller
-                      labelText: 'Email',
-                      obscureText: false),
-
-                  const SizedBox(height: 10),
                   //NIC
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Expanded(
+                      child: NormalInput(
+                          icon: const Icon(Icons.perm_identity),
+                          controller: NIC, // Replace with your controller
+                          labelText: 'NIC',
+                          obscureText: false),
+                    ),
+                  ),
 
-                  NormalInput(
-                      icon: const Icon(Icons.perm_identity),
-                      controller: NIC, // Replace with your controller
-                      labelText: 'NIC',
-                      obscureText: false),
-
-                  const SizedBox(height: 10),
                   //Mobile number
-                  NormalInput(
-                      icon: const Icon(Icons.mobile_friendly_rounded),
-                      controller: mobile, // Replace with your controller
-                      labelText: 'Mobile',
-                      obscureText: false),
-
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Expanded(
+                      child: NormalInput(
+                          icon: const Icon(Icons.mobile_friendly_rounded),
+                          controller: mobile, // Replace with your controller
+                          labelText: 'Mobile',
+                          obscureText: false),
+                    ),
+                  ),
                   const SizedBox(
                     height: 20,
                   ),
 
                   //seat view button
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: Container(
-                          width: 150,
-                          decoration: const BoxDecoration(
-                              color: Color.fromARGB(255, 0, 103, 172),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          child: TextButton(
-                            onPressed: () {
-                              print(firstName.text);
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: Container(
+                      decoration: const BoxDecoration(
+                          color: Color.fromARGB(255, 0, 103, 172),
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      child: TextButton(
+                        onPressed: () {
+                          print(firstName.text);
 
-                              //field fill checking
-                              if (firstName.text.isEmpty ||
-                                  lastName.text.isEmpty ||
-                                  NIC.text.isEmpty ||
-                                  email.text.isEmpty ||
-                                  mobile.text.isEmpty) {
-                                QuickAlert.show(
-                                  context: context,
-                                  type: QuickAlertType.error,
-                                  title: 'Oops...',
-                                  text: 'All field Must be Filled',
-                                );
-                                return;
-                              }
+                          //field fill checking
+                          if (firstName.text.isEmpty ||
+                              lastName.text.isEmpty ||
+                              NIC.text.isEmpty ||
+                              email.text.isEmpty ||
+                              mobile.text.isEmpty) {
+                            QuickAlert.show(
+                              context: context,
+                              type: QuickAlertType.error,
+                              title: 'Oops...',
+                              text: 'All field Must be Filled',
+                            );
+                            return;
+                          }
 
-                              //making the full ticket object to generate the QR code.then it will pass to the payment page an then ticket summary page
-                              TicketDetails ticket = TicketDetails(
-                                classType: train_details
-                                    .classTypes[AvailabilityTile.ClassType!]
-                                    .toString(),
-                                email: email.text,
-                                NIC: NIC.text,
-                                trainNo: train_details.trainNo.toString(),
-                                trainName: train_details.name,
-                                Orign: train_details.from,
-                                Destination: train_details.to,
-                                timeFromTO: [
-                                  train_details.arrivalTimes[0].toString() +
-                                      "AM",
-                                  train_details.departureTimes[0].toString() +
-                                      "AM"
-                                ],
-                                Date: date,
-                                firstName: firstName.text,
-                                lastName: lastName.text,
-                                mobileNo: mobile.text,
-                                PassengerCount: passengerCount.toString(),
-                                SeatNumbers: Seatnumbers,
-                                Price: price.toString(),
-                              );
+                          //making the full ticket object to generate the QR code.then it will pass to the payment page an then ticket summary page
+                          TicketDetails ticket = TicketDetails(
+                            classType: train_details
+                                .classTypes[AvailabilityTile.ClassType!]
+                                .toString(),
+                            email: email.text,
+                            NIC: NIC.text,
+                            trainNo: train_details.trainNo.toString(),
+                            trainName: train_details.name,
+                            Orign: train_details.from,
+                            Destination: train_details.to,
+                            timeFromTO: [
+                              train_details.arrivalTimes[0].toString() + "AM",
+                              train_details.departureTimes[0].toString() + "AM"
+                            ],
+                            Date: date,
+                            firstName: firstName.text,
+                            lastName: lastName.text,
+                            mobileNo: mobile.text,
+                            PassengerCount: passengerCount.toString(),
+                            SeatNumbers: Seatnumbers,
+                            Price: price.toString(),
+                          );
 
-                              _dialogBuilder(context, price, train_details,
-                                  ticket, updatedSeatView);
-                            },
-                            child: const Text('Book Seat',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 20)),
-                          ),
-                        ),
+                          _dialogBuilder(context, price, train_details, ticket,
+                              updatedSeatView);
+                        },
+                        child: const Text('Book Seat',
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 20)),
                       ),
-
-                      //Cancel button
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: Container(
-                          width: 150,
-                          decoration: const BoxDecoration(
-                              color: Color.fromARGB(255, 235, 0, 78),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          child: TextButton(
-                            onPressed: () {
-                              Get.back();
-                            },
-                            child: const Text('Cancel ',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 20)),
-                          ),
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
 
                   const SizedBox(
                     height: 10,
+                  ),
+
+                  //Cancel button
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: Container(
+                      decoration: const BoxDecoration(
+                          color: Color.fromARGB(255, 235, 0, 78),
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      child: TextButton(
+                        onPressed: () {
+                          Get.back();
+                        },
+                        child: const Text('Cancel ',
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 20)),
+                      ),
+                    ),
                   ),
                 ],
               ),
