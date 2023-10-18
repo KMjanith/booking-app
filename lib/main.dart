@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'Pages/procedure/Home.dart';
-import 'servises/DatabaseHandeling/mongodb.dart';
+//import 'servises/DatabaseHandeling/mongodb.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await mongoDatabase.connect();
+  //await mongoDatabase.connect();
   
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
