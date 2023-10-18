@@ -8,6 +8,7 @@ import '../../servises/AuthManager.dart';
 import '../Auth/SignUp.dart';
 import '../widgets/AppBarCustom.dart';
 import '../widgets/TicketFinal.dart';
+import '../widgets/bottomNavigator.dart';
 import '../widgets/clipPath.dart';
 import '../widgets/drawer.dart';
 import 'Home.dart';
@@ -134,6 +135,7 @@ class TicketSummary extends StatelessWidget {
           ),
       ]),
       drawer: const CustomDrawer(), //side panel
+      bottomNavigationBar: Bottom_NavigationBar(),
     );
   }
 }

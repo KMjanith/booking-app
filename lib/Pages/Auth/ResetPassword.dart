@@ -3,6 +3,7 @@ import '../../Models/resetPassword.dart';
 import '../../servises/Pass_Reset_Api.dart';
 import '../procedure/Home.dart';
 import '../widgets/AppBarCustom.dart';
+import '../widgets/bottomNavigator.dart';
 import '../widgets/clipPath.dart';
 import '../widgets/drawer.dart';
 import '../widgets/input_fields/normal_input.dart';
@@ -19,7 +20,7 @@ class PasswordReset extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
+      bottomNavigationBar: Bottom_NavigationBar(),
       body: Stack(
         children: [
           const clipPath(),

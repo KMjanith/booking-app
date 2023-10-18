@@ -4,6 +4,7 @@ import 'package:flutter/rendering.dart';
 import '../../servises/AuthManager.dart';
 import '../widgets/AppBarCustom.dart';
 import '../widgets/Colors.dart';
+import '../widgets/bottomNavigator.dart';
 import '../widgets/clipPath.dart';
 import '../widgets/Info.dart';
 import '../widgets/drawer.dart';
@@ -22,6 +23,7 @@ class HomePage extends StatelessWidget {
 
     // Build the main scaffold
     return Scaffold(
+      bottomNavigationBar: Bottom_NavigationBar(),
       body: Stack(
         children: [
           

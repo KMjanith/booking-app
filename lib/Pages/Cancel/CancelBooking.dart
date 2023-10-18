@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../servises/login_api.dart';
 import '../widgets/AppBarCustom.dart';
+import '../widgets/bottomNavigator.dart';
 import '../widgets/clipPath.dart';
 import '../widgets/drawer.dart';
 import '../widgets/ticketAttri.dart';
@@ -18,6 +19,7 @@ class CancelBooking extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: Bottom_NavigationBar(),
       body: Stack(
         children: [
           const clipPath(),

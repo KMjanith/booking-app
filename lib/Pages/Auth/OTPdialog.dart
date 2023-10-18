@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quickalert/quickalert.dart';
 import '../../servises/login_api.dart';
+import '../widgets/bottomNavigator.dart';
 import '../widgets/clipPath.dart';
 import '../widgets/drawer.dart';
 import '../widgets/input_fields/OTPInBox.dart';
@@ -96,7 +97,7 @@ class _OTPdialogBoxState extends State<OTPdialogBox> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        extendBodyBehindAppBar: true,
+      bottomNavigationBar: Bottom_NavigationBar(),
         body: Stack(
           children: [
             const clipPath(),

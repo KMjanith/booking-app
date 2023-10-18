@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import '../../servises/Cancel_api.dart';
 import '../procedure/Home.dart';
 import '../widgets/AppBarCustom.dart';
+import '../widgets/bottomNavigator.dart';
 import '../widgets/clipPath.dart';
 import '../widgets/drawer.dart';
 import '../widgets/input_fields/normal_input.dart';
@@ -20,6 +21,7 @@ class CancelCheak extends StatelessWidget {
 
     http.Client client = http.Client();
     return Scaffold(
+      bottomNavigationBar: Bottom_NavigationBar(),
       body: Stack(
         children: [
           const clipPath(),

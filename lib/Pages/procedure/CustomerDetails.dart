@@ -12,6 +12,7 @@ import '../widgets/AppBarCustom.dart';
 import '../widgets/AvailabilityTile.dart';
 import '../widgets/Colors.dart';
 import '../widgets/CustomClipart..dart';
+import '../widgets/bottomNavigator.dart';
 import '../widgets/drawer.dart';
 import '../widgets/input_fields/normal_input.dart';
 import 'Home.dart';
@@ -50,6 +51,7 @@ class CustomerDetails extends StatelessWidget {
     }
 
     return Scaffold(
+      bottomNavigationBar: Bottom_NavigationBar(),
       body: Stack(
         children: [
          

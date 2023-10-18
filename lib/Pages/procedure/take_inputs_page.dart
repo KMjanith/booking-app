@@ -6,6 +6,7 @@ import '../../servises/AuthManager.dart';
 import '../Auth/SignUp.dart';
 import '../Auth/login.dart';
 import '../widgets/AppBarCustom.dart';
+import '../widgets/bottomNavigator.dart';
 import '../widgets/clipPath.dart';
 import '../widgets/drawer.dart';
 import '../widgets/input_fields/DateInput.dart';
@@ -170,6 +171,7 @@ class FirstPage extends StatelessWidget {
         ],
       ),
        drawer: const CustomDrawer(), //side panel
+       bottomNavigationBar: Bottom_NavigationBar(),
     );
   }
 

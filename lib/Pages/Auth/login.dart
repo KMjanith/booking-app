@@ -4,6 +4,7 @@ import 'package:get/get_core/src/get_main.dart';
 import '../../servises/login_api.dart';
 import '../procedure/Home.dart';
 import '../widgets/AppBarCustom.dart';
+import '../widgets/bottomNavigator.dart';
 import '../widgets/clipPath.dart';
 import '../widgets/drawer.dart';
 import '../widgets/input_fields/normal_input.dart';
@@ -25,7 +26,7 @@ class LoginPage extends StatelessWidget {
     http.Client client = http.Client();
     
     return Scaffold(
-      extendBodyBehindAppBar: true,
+      bottomNavigationBar: Bottom_NavigationBar(),
       body: Stack(
         children: [
           /*Container(

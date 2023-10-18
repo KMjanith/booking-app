@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../../Models/Trainmodel.dart';
 import '../widgets/AppBarCustom.dart';
 import '../widgets/Seatplan.dart';
+import '../widgets/bottomNavigator.dart';
 import '../widgets/drawer.dart';
 import 'CustomerDetails.dart';
 import 'Home.dart';
@@ -35,6 +36,7 @@ class SeatView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: Bottom_NavigationBar(),
       drawer: const CustomDrawer(), //side panel
       backgroundColor: Color.fromARGB(255, 0, 0, 0),
       //appBar: AppBar(title: Text('Seat View'),),

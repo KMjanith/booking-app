@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import '../../servises/AuthManager.dart';
 import '../../servises/Cancel_api.dart';
@@ -7,6 +6,7 @@ import '../../servises/DatabaseHandeling/constant.dart';
 import '../Auth/SignUp.dart';
 import '../Auth/login.dart';
 import '../widgets/AppBarCustom.dart';
+import '../widgets/bottomNavigator.dart';
 import '../widgets/clipPath.dart';
 import '../widgets/drawer.dart';
 import 'package:http/http.dart' as http;
@@ -25,45 +25,12 @@ class _MyProfileState extends State<MyProfile> {
   String NIC = '';
   String email = '';
   String mobile = '';
-  List<Map<String, dynamic>> bookingDetails = [
-    {
-      "RefNo": "21212121",
-      "date": "2023-15-45",
-      "price": 200,
-      "from": "A",
-      "to": "D",
-      "status": "pending"
-    },
-    {
-      "RefNo": "21212121",
-      "date": "2023-15-45",
-      "price": 200,
-      "from": "A",
-      "to": "D",
-      "status": "pending"
-    },
-    {
-      "RefNo": "21212121",
-      "date": "2023-15-45",
-      "price": 200,
-      "from": "A",
-      "to": "D",
-      "status": "pending"
-    },
-    {
-      "RefNo": "21212121",
-      "date": "2023-15-45",
-      "price": 200,
-      "from": "A",
-      "to": "D",
-      "status": "pending"
-    }
-  ];
+  List<Map<String, dynamic>> bookingDetails = [];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // ... (rest of your scaffold code remains unchanged)
+      bottomNavigationBar:Bottom_NavigationBar(),
       body: FutureBuilder(
         future: _fetchLoginDetails(jsonDecode(AuthManager.token)["userID"]),
         builder: (context, snapshot) {
@@ -146,12 +113,10 @@ class _MyProfileState extends State<MyProfile> {
                                       const SizedBox(
                                         height: 20,
                                       ),
-
                                       Container(
                                         //search train button
                                         decoration: BoxDecoration(
-                                          color:
-                                              Color.fromARGB(255, 199, 0, 0),
+                                          color: Color.fromARGB(255, 199, 0, 0),
                                           borderRadius:
                                               BorderRadius.circular(10),
                                         ),
@@ -161,9 +126,7 @@ class _MyProfileState extends State<MyProfile> {
                                                   fontSize: 20,
                                                   color: Colors.white,
                                                   fontWeight: FontWeight.bold)),
-                                          onPressed: () async {
-                                            
-                                          },
+                                          onPressed: () async {},
                                         ),
                                       ),
                                       const SizedBox(
@@ -176,7 +139,7 @@ class _MyProfileState extends State<MyProfile> {
 
                             //this is the My booking widget
                             : Container(
-                                height: 600,
+                                height: 1000,
                                 width: 50,
                                 child: ListView.builder(
                                     itemCount: bookingDetails.length,

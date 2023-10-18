@@ -5,6 +5,7 @@ import '../../Models/Trainmodel.dart';
 import '../../servises/Search_api.dart';
 import '../widgets/AppBarCustom.dart';
 import '../widgets/AvailabilityTile.dart';
+import '../widgets/bottomNavigator.dart';
 import '../widgets/clipPath.dart';
 import '../widgets/drawer.dart';
 import 'Home.dart';
@@ -28,8 +29,11 @@ class TrainDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     SerachTrain searchTrain = SerachTrain();
+    
     return Scaffold(
+      bottomNavigationBar: Bottom_NavigationBar(),
       body: Stack(children: [
         /*Container(
           decoration: BoxDecoration(color: Color.fromARGB(255, 213, 230, 245)),
