@@ -67,6 +67,7 @@ class CancelCheak extends StatelessWidget {
 
                       //email
                       NormalInput(
+                        keyboardType: TextInputType.text,
                         icon: const Icon(Icons.numbers),
                           controller: ReferenceNo,
                           labelText: "Reference no",

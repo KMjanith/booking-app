@@ -11,11 +11,10 @@ class Bottom_NavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Padding(
-        padding: const EdgeInsets.only(bottom: 8.0),
+        padding: const EdgeInsets.all(12.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-
             //Home navigator
             InkWell(
                 onTap: () {

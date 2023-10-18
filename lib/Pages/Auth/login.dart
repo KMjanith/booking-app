@@ -61,6 +61,7 @@ class LoginPage extends StatelessWidget {
 
                   //email
                   NormalInput(
+                    keyboardType: TextInputType.text,
                     icon: const Icon(Icons.email_rounded),
                       controller: email,
                       labelText: "email",
@@ -70,6 +71,7 @@ class LoginPage extends StatelessWidget {
                   ),
                   //password
                   NormalInput(
+                    keyboardType: TextInputType.text,
                     icon: const Icon(Icons.password_rounded),
                       controller: password,
                       labelText: "password",

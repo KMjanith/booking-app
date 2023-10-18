@@ -105,6 +105,7 @@ class FirstPage extends StatelessWidget {
 
                   //passenger count input
                   NormalInput(
+                    keyboardType: TextInputType.number,
                       icon: const Icon(Icons.person),
                       controller: _PasegerCount,
                       labelText: "pasengers",

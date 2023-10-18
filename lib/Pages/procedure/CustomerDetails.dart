@@ -109,6 +109,7 @@ class CustomerDetails extends StatelessWidget {
                         //fsrt name
                         Expanded(
                           child: NormalInput(
+                            keyboardType: TextInputType.text,
                               icon: const Icon(Icons.person_2_rounded),
                               controller: firstName,
                               labelText: 'First Name',
@@ -119,6 +120,7 @@ class CustomerDetails extends StatelessWidget {
                         //lastname
                         Expanded(
                           child: NormalInput(
+                            keyboardType: TextInputType.text,
                               icon: const Icon(Icons.person_2_rounded),
                               controller: lastName,
                               labelText: 'Last Name',
@@ -133,6 +135,7 @@ class CustomerDetails extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: Expanded(
                       child: NormalInput(
+                        keyboardType: TextInputType.emailAddress,
                           icon: const Icon(Icons.email_rounded),
                           controller: email, // Replace with your controller
                           labelText: 'Email',
@@ -145,6 +148,7 @@ class CustomerDetails extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: Expanded(
                       child: NormalInput(
+                        keyboardType: TextInputType.text,
                           icon: const Icon(Icons.perm_identity),
                           controller: NIC, // Replace with your controller
                           labelText: 'NIC',
@@ -157,6 +161,7 @@ class CustomerDetails extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: Expanded(
                       child: NormalInput(
+                        keyboardType: TextInputType.number,
                           icon: const Icon(Icons.mobile_friendly_rounded),
                           controller: mobile, // Replace with your controller
                           labelText: 'Mobile',

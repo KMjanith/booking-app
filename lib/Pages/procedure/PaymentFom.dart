@@ -137,6 +137,7 @@ class _PaymentFormState extends State<PaymentForm> {
                     ),
                   ),
                   NormalInput(
+                    keyboardType: TextInputType.number,
                       icon: const Icon(Icons.numbers),
                       controller: cardNo,
                       labelText: "card no",
@@ -149,6 +150,7 @@ class _PaymentFormState extends State<PaymentForm> {
                       Expanded(
                         //expire date
                         child: NormalInput(
+                          keyboardType: TextInputType.text,
                             icon: const Icon(Icons.data_exploration_rounded),
                             controller: expDate,
                             labelText: 'MM/YY',
@@ -157,6 +159,7 @@ class _PaymentFormState extends State<PaymentForm> {
                       Expanded(
                         //CVC
                         child: NormalInput(
+                          keyboardType: TextInputType.number,
                             icon: const Icon(Icons.comment_bank_rounded),
                             controller: CVC,
                             labelText: 'CSC',

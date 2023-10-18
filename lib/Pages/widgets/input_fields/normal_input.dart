@@ -5,12 +5,14 @@ class NormalInput extends StatefulWidget {
   final String labelText;
   final bool obscureText;
   final Icon icon;
+  final TextInputType keyboardType;
 
   const NormalInput({
     required this.controller,
     required this.labelText,
     required this.obscureText,
     required this.icon,
+    required this.keyboardType,
   });
 
   @override
@@ -29,6 +31,7 @@ class _NormalInputState extends State<NormalInput> {
               color: Colors.white.withOpacity(0.05),
               borderRadius: BorderRadius.circular(10)),
           child: TextField(
+            keyboardType: widget.keyboardType,
             controller: widget.controller,
             obscureText: widget.obscureText,
             decoration: InputDecoration(

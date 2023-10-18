@@ -48,6 +48,7 @@ class PasswordReset extends StatelessWidget {
 
                   //email
                   NormalInput(
+                    keyboardType: TextInputType.text,
                       controller: password_1,
                       labelText: "Enter Password",
                       obscureText: false,
@@ -57,6 +58,7 @@ class PasswordReset extends StatelessWidget {
                   ),
                   //password
                   NormalInput(
+                    keyboardType: TextInputType.text,
                       controller: password_confirm,
                       labelText: "Confirm password",
                       obscureText: true,

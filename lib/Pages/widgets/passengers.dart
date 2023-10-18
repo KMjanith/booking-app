@@ -28,6 +28,7 @@ class PassengerForm extends StatelessWidget {
             height: 10,
           ),
           NormalInput(
+            keyboardType: TextInputType.text,
             icon: const Icon(Icons.person_3_rounded),
               controller: nameController,
               labelText: "Name",
@@ -36,6 +37,7 @@ class PassengerForm extends StatelessWidget {
             height: 10,
           ),
           NormalInput(
+            keyboardType: TextInputType.text,
             icon: const Icon(Icons.perm_identity_rounded),
               controller: nicController, labelText: "NIC", obscureText: false)
         ],

@@ -65,6 +65,7 @@ class SignUpPage extends StatelessWidget {
                   ),
                   //input fields
                   NormalInput(
+                    keyboardType: TextInputType.text,
                     controller: firstName,
                     labelText: "First Name",
                     obscureText: false,
@@ -75,6 +76,7 @@ class SignUpPage extends StatelessWidget {
                   ),
 
                   NormalInput(
+                    keyboardType: TextInputType.text,
                     controller: lastName,
                     labelText: "Last Name",
                     obscureText: false,
@@ -84,6 +86,7 @@ class SignUpPage extends StatelessWidget {
                     height: 10,
                   ),
                   NormalInput(
+                    keyboardType: TextInputType.emailAddress,
                     controller: email,
                     labelText: "Email",
                     obscureText: false,
@@ -96,6 +99,7 @@ class SignUpPage extends StatelessWidget {
                   /*NormalInput(controller: NIC, labelText: "NIC number",
                       obscureText: false),*/
                   NormalInput(
+                      keyboardType: TextInputType.number,
                       icon: Icon(Icons.phone_android),
                       controller: TelephoneNumber,
                       labelText: "Telephone number",
@@ -104,6 +108,7 @@ class SignUpPage extends StatelessWidget {
                     height: 10,
                   ),
                   NormalInput(
+                    keyboardType: TextInputType.text,
                       icon: Icon(Icons.perm_identity),
                       controller: NIC,
                       labelText: "NIC",
@@ -112,6 +117,7 @@ class SignUpPage extends StatelessWidget {
                     height: 10,
                   ),
                   NormalInput(
+                    keyboardType: TextInputType.text,
                       icon: Icon(Icons.password),
                       controller: password,
                       labelText: "Password",
