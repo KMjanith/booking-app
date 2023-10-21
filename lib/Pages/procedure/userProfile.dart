@@ -30,7 +30,7 @@ class _MyProfileState extends State<MyProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar:Bottom_NavigationBar(),
+      bottomNavigationBar: Bottom_NavigationBar(),
       body: FutureBuilder(
         future: _fetchLoginDetails(jsonDecode(AuthManager.token)["userID"]),
         builder: (context, snapshot) {
@@ -67,7 +67,7 @@ class _MyProfileState extends State<MyProfile> {
                             profileButton("My bookings", 1)
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         selectedButtonIndex == 0
@@ -80,12 +80,12 @@ class _MyProfileState extends State<MyProfile> {
                                       borderRadius: BorderRadius.circular(12)),
                                   child: Column(
                                     children: [
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 20,
                                       ),
                                       Text(
                                         "Hi $firstName",
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             fontSize: 30,
                                             fontWeight: FontWeight.bold),
                                       ),
@@ -120,13 +120,13 @@ class _MyProfileState extends State<MyProfile> {
                                           borderRadius:
                                               BorderRadius.circular(10),
                                         ),
-                                        child: TextButton(
-                                          child: const Text("Delete Account",
+                                        child: const Padding(
+                                          padding: EdgeInsets.all(8.0),
+                                          child: Text(
+                                              "To edit profile go to our web site",
                                               style: TextStyle(
-                                                  fontSize: 20,
                                                   color: Colors.white,
-                                                  fontWeight: FontWeight.bold)),
-                                          onPressed: () async {},
+                                                  fontSize: 15)),
                                         ),
                                       ),
                                       const SizedBox(
@@ -159,7 +159,7 @@ class _MyProfileState extends State<MyProfile> {
                                               borderRadius:
                                                   BorderRadius.circular(12),
                                               color: color,
-                                              border: Border(
+                                              border: const Border(
                                                 bottom: BorderSide(
                                                     color: Colors.black12),
                                               )),
@@ -187,7 +187,7 @@ class _MyProfileState extends State<MyProfile> {
                                               children: [
                                                 Text(
                                                   "Ref.No: ${bookingDetails[index]["ReferenceNo"]}",
-                                                  style: TextStyle(
+                                                  style: const TextStyle(
                                                       fontSize: 15,
                                                       fontWeight:
                                                           FontWeight.bold),
@@ -195,17 +195,18 @@ class _MyProfileState extends State<MyProfile> {
                                                 Text(
                                                     bookingDetails[index]
                                                         ["date"],
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                         fontSize: 15)),
                                                 Text(
                                                     "Price: LKR ${bookingDetails[index]["price"].toString()}",
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                         fontSize: 15)),
                                               ],
                                             ),
                                             trailing: Text(
                                                 bookingDetails[index]["Status"],
-                                                style: TextStyle(fontSize: 16)),
+                                                style: const TextStyle(
+                                                    fontSize: 16)),
                                           ),
                                         ),
                                       );
@@ -267,36 +268,35 @@ class _MyProfileState extends State<MyProfile> {
   }
 
   attributeProfiler(String titleNAme, String actualNAme) {
-    return Container(
-      child: Column(
-        //mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Text(
-            titleNAme,
-            textAlign: TextAlign.start,
+    return Column(
+      //mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Text(
+          titleNAme,
+          textAlign: TextAlign.start,
+          style: const TextStyle(fontSize: 18),
+        ),
+        const SizedBox(
+          height: 5,
+        ),
+        Container(
+          height: 50,
+          width: 300,
+          decoration: BoxDecoration(
+              border: Border.all(color: Colors.black45),
+              borderRadius: BorderRadius.circular(12),
+              color: Color.fromARGB(143, 255, 255, 255)),
+          child: Center(
+              child: Text(
+            actualNAme,
             style: TextStyle(fontSize: 18),
-          ),
-          SizedBox(
-            height: 5,
-          ),
-          Container(
-            height: 50,
-            width: 300,
-            decoration: BoxDecoration(
-                border: Border.all(color: Colors.black45),
-                borderRadius: BorderRadius.circular(12),
-                color: Color.fromARGB(143, 255, 255, 255)),
-            child: Center(
-                child: Text(
-              actualNAme,
-              style: TextStyle(fontSize: 18),
-            )),
-          )
-        ],
-      ),
+          )),
+        )
+      ],
     );
   }
 
+  //this method is to fetch users details from the database
   Future<Map<String, dynamic>> _fetchLoginDetails(String userId) async {
     final Map<String, dynamic> requestBody = {"userID": userId};
     final response = await http.post(
@@ -309,19 +309,16 @@ class _MyProfileState extends State<MyProfile> {
     return temp;
   }
 
+//this method is to fetch users booking details from the database
   Future<void> _fetchBokingDetails(String email) async {
     final response = await http.get(
       Uri.parse('http://$baseUrl_1:4000/profile/history/${email}'),
       headers: {'Content-Type': 'application/json'},
-      //body: jsonEncode(requestBody),
     );
-    // print(response.body);
-    print(response.body.runtimeType);
-    print(response.body);
     // Convert the JSON string to a List<Map<String, dynamic>>
     List<Map<String, dynamic>> dataList =
         List<Map<String, dynamic>>.from(json.decode(response.body));
-    print(dataList.runtimeType);
+
     bookingDetails = dataList;
   }
 }

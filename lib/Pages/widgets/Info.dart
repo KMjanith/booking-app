@@ -11,20 +11,18 @@ class Info extends StatelessWidget {
       child: Column(
         children: [
           const SizedBox(
-            height: 20,
+            height: 10,
           ),
           Text(
             title,
             style: const TextStyle(
               color: Color.fromARGB(255, 92, 7, 47),
-              fontSize: 40,
+              fontSize: 29,
               fontWeight: FontWeight.bold,
             ),
             textAlign: TextAlign.center,
           ),
-          const SizedBox(
-            height: 10,
-          ),
+         
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Text(

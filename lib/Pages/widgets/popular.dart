@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 
+import '../../servises/DatabaseHandeling/constant.dart';
+
 class PopularTile extends StatefulWidget {
   final PageController pagecontroller;
 
@@ -45,6 +47,9 @@ class _PopularTileState extends State<PopularTile> {
 
   @override
   Widget build(BuildContext context) {
+    final from_stations = ["Fort", "Fort", "Fort"];
+    final to_stations = ["Galle", "Badulla", "Kandy"];
+
     return Column(
       children: [
         Container(
@@ -64,9 +69,22 @@ class _PopularTileState extends State<PopularTile> {
                 },
                 child: GestureDetector(
                   onTap: () {
-                    ScaffoldMessenger.of(context)
-                        .showSnackBar(SnackBar(content: Text("${index}")));
+
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            content: Column(
+                              children: [
+                                  Text(popular_title[index],style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
+                                  SizedBox(height: 10,),
+                                  Text(popular_content[index],style: TextStyle(fontSize: 18),)
+                              ],
+                            ),
+                          );
+                        });
                   },
+
                   child: Container(
                     margin: EdgeInsets.all(10),
                     decoration: const BoxDecoration(
@@ -93,18 +111,18 @@ class _PopularTileState extends State<PopularTile> {
                           'Assets/${index}.png',
                           scale: 0.945,
                         ),
-                        const Padding(
-                          padding: EdgeInsets.symmetric(
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
                               horizontal: 30.0, vertical: 10),
                           child: Row(
                             children: [
                               Text(
-                                "From: Fort\nTo : kandy",
-                                style: TextStyle(
+                                "From: ${from_stations[index]}\nTo : ${to_stations[index]}",
+                                style: const TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               ),
-                              Spacer(),
-                              Row(
+                              const Spacer(),
+                              const Row(
                                 children: [
                                   Icon(Icons.star_border_outlined,
                                       color: Colors.amber),
@@ -131,7 +149,6 @@ class _PopularTileState extends State<PopularTile> {
             itemCount: 3,
           ),
         ),
-        
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: List.generate(

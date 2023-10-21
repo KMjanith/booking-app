@@ -10,46 +10,45 @@ class Bottom_NavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            //Home navigator
-            InkWell(
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => 
-                    HomePage()
-                  ));
-                },
-                child: Icon(Icons.home)),
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12.0, top: 8),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          //Home navigator
+          InkWell(
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => HomePage()));
+              },
+              child: Icon(Icons.home)),
 
-                //Search train navigator
-                InkWell(
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => FirstPage()));
-                },
-                child: Icon(Icons.search)),
+          //Search train navigator
+          InkWell(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => FirstPage()));
+              },
+              child: Icon(Icons.search)),
 
-                //Login navigator
-                InkWell(
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => LoginPage()));
-                },
-                child: Icon(Icons.login)),
+          //Login navigator
+          InkWell(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => LoginPage()));
+              },
+              child: Icon(Icons.login)),
 
-                //signUp navigator
-                InkWell(
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => SignUpPage()));
-                },
-                child: Icon(Icons.app_registration)),
-            
-          ],
-        ),
-      );
+          //signUp navigator
+          InkWell(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SignUpPage()));
+              },
+              child: Icon(Icons.app_registration)),
+        ],
+      ),
+    );
   }
 }

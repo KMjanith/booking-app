@@ -59,12 +59,15 @@ class TicketSummary extends StatelessWidget {
                                       pw.SizedBox(
                                         height: 20,
                                       ),
-                                      pw.Text(
-                                        "Reference Number: ${finalTicket.RefNumber}",
-                                        style: pw.TextStyle(
-                                            fontSize: 25,
-                                            fontWeight: pw.FontWeight.bold),
-                                      ),
+                                      pw.Center(
+                                        child:
+                                       pw.Text(
+                                          "Reference Number: ${finalTicket.RefNumber}",
+                                          style: pw.TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: pw.FontWeight.bold),
+                                        ), ),
+                                     
                                       pw.SizedBox(
                                         height: 10,
                                       ),
@@ -168,20 +171,10 @@ class TicketSummary extends StatelessWidget {
                                           style: pw.TextStyle(
                                               fontSize: 20,
                                               fontWeight: pw.FontWeight.bold),
-                                        ),
-                                         pw.Text(
-                                          "Class Type: ${finalTicket.ticket.classType}",
-                                          style: pw.TextStyle(
-                                              fontSize: 20,
-                                              fontWeight: pw.FontWeight.bold),
-                                        ),
+                                        )
+                                         
                                       ]),
-                                      pw.Text(
-                                        "Class Type: ${finalTicket.ticket.classType}",
-                                        style: pw.TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: pw.FontWeight.bold),
-                                      ),
+                                     
 
                                       pw.SizedBox(
                                         height: 10,
@@ -222,16 +215,11 @@ class TicketSummary extends StatelessWidget {
                                             fontSize: 20,
                                             fontWeight: pw.FontWeight.bold),
                                       ),
-
-                                      pw.SizedBox(
-                                        height: 40,
-                                      ),
-                                      pw.Text(
-                                        "Thank you for using our service!!",
-                                        style: pw.TextStyle(
+                                      pw.SizedBox(height: 30),
+                                      pw.Text("go to the see Qr code tab in the side bar and \nenter the reference number to see the QR code of your ticket",textAlign: pw.TextAlign.center,style: pw.TextStyle(
                                             fontSize: 20,
-                                            fontWeight: pw.FontWeight.bold),
-                                      ),
+                                            color: PdfColors.red,
+                                            fontWeight: pw.FontWeight.bold) )
                                     ],
                                   ),
                                 ),

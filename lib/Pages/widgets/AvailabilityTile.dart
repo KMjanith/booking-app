@@ -31,7 +31,7 @@ class AvailabilityTile extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(16),
           child: Container(
-            height: 360,
+            height: 380,
             width: double.infinity,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
@@ -94,31 +94,18 @@ class AvailabilityTile extends StatelessWidget {
                       children: [
                         Column(
                           children: [
-                            Row(
-                              children: [
-                                textStyle("from: "),
-                                textStyle(from),
-                              ],
-                            ),
+                            textStyle(from),
                             textStyle(
                                 data.arrivalTimes[data.stations.indexOf(from)]),
                           ],
                         ),
-                        const Text(
-                          "select\nclass",
-                          style: TextStyle(
-                              color: Color.fromARGB(255, 241, 36, 36),
-                              fontSize: 20),
-                          textAlign: TextAlign.center,
+                        const Icon(
+                          Icons.arrow_forward,
+                          size: 40,
                         ),
                         Column(
                           children: [
-                            Row(
-                              children: [
-                                textStyle("to: "),
-                                textStyle(to),
-                              ],
-                            ),
+                            textStyle(to),
                             textStyle(
                                 data.arrivalTimes[data.stations.indexOf(to)]),
                           ],
@@ -129,7 +116,14 @@ class AvailabilityTile extends StatelessWidget {
                 ),
               ),
               const SizedBox(
-                height: 10,
+                height: 5,
+              ),
+              const Text(
+                "select class",
+                style: TextStyle(color: Colors.red,fontSize: 18),
+              ),
+              const SizedBox(
+                height: 5,
               ),
 
               //sheet tiles
@@ -279,7 +273,6 @@ class AvailabilityTile extends StatelessWidget {
         index]; //duplicate list to make changes of the seat selection
     print(listWithZeros);
     print(priceList["ticketPrices"][index]);
-  
 
     ClassType = index;
 
