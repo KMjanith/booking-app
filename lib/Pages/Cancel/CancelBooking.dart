@@ -119,7 +119,7 @@ class CancelBooking extends StatelessWidget {
                               value: "LKR.${resultMap["booking"]["price"]}"),
                         ]),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Container(
@@ -143,7 +143,7 @@ class CancelBooking extends StatelessWidget {
                               value: resultMap["daysRemaining"].toString()),
                           TicketAttribute(
                               attribute: "Refund amount",
-                              value: resultMap["refund"].toString()),
+                              value: "LKR.${resultMap["refund"]}"),
 
                           //check refund button
                           Padding(

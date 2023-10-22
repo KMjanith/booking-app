@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pdf/pdf.dart';
 import 'package:quickalert/quickalert.dart';
+import 'package:screenshot/screenshot.dart';
 import '../../servises/AuthManager.dart';
 import '../Auth/SignUp.dart';
 import '../widgets/AppBarCustom.dart';
@@ -22,13 +23,18 @@ class TicketSummary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //Create an instance of ScreenshotController
+    ScreenshotController screenshotController = ScreenshotController();
+
     return Scaffold(
       body: Stack(children: [
-        const clipPath(),
+       const clipPath(),
         ListView(
           children: [
-            //show full ticket which can be downloaded in to the Train folder in the mobile
-            finalTicket,
+            
+          //show full ticket which can be downloaded in to the Train folder in the mobile
+             finalTicket,
+              
 
             //odf download button
             Padding(
@@ -60,14 +66,13 @@ class TicketSummary extends StatelessWidget {
                                         height: 20,
                                       ),
                                       pw.Center(
-                                        child:
-                                       pw.Text(
+                                        child: pw.Text(
                                           "Reference Number: ${finalTicket.RefNumber}",
                                           style: pw.TextStyle(
                                               fontSize: 20,
                                               fontWeight: pw.FontWeight.bold),
-                                        ), ),
-                                     
+                                        ),
+                                      ),
                                       pw.SizedBox(
                                         height: 10,
                                       ),
@@ -131,7 +136,6 @@ class TicketSummary extends StatelessWidget {
                                             fontSize: 20,
                                             fontWeight: pw.FontWeight.bold),
                                       ),
-                                      
                                       pw.SizedBox(
                                         height: 10,
                                       ),
@@ -141,7 +145,6 @@ class TicketSummary extends StatelessWidget {
                                             fontSize: 20,
                                             fontWeight: pw.FontWeight.bold),
                                       ),
-                                      
                                       pw.SizedBox(
                                         height: 10,
                                       ),
@@ -151,7 +154,6 @@ class TicketSummary extends StatelessWidget {
                                             fontSize: 20,
                                             fontWeight: pw.FontWeight.bold),
                                       ),
-
                                       pw.SizedBox(
                                         height: 10,
                                       ),
@@ -161,21 +163,17 @@ class TicketSummary extends StatelessWidget {
                                             fontSize: 20,
                                             fontWeight: pw.FontWeight.bold),
                                       ),
-
                                       pw.SizedBox(
                                         height: 10,
                                       ),
                                       pw.Column(children: [
-                                         pw.Text(
+                                        pw.Text(
                                           "Class Type: ${finalTicket.ticket.classType}",
                                           style: pw.TextStyle(
                                               fontSize: 20,
                                               fontWeight: pw.FontWeight.bold),
                                         )
-                                         
                                       ]),
-                                     
-
                                       pw.SizedBox(
                                         height: 10,
                                       ),
@@ -185,7 +183,6 @@ class TicketSummary extends StatelessWidget {
                                             fontSize: 20,
                                             fontWeight: pw.FontWeight.bold),
                                       ),
-
                                       pw.SizedBox(
                                         height: 10,
                                       ),
@@ -195,7 +192,6 @@ class TicketSummary extends StatelessWidget {
                                             fontSize: 20,
                                             fontWeight: pw.FontWeight.bold),
                                       ),
-
                                       pw.SizedBox(
                                         height: 10,
                                       ),
@@ -205,7 +201,6 @@ class TicketSummary extends StatelessWidget {
                                             fontSize: 20,
                                             fontWeight: pw.FontWeight.bold),
                                       ),
-
                                       pw.SizedBox(
                                         height: 10,
                                       ),
@@ -216,10 +211,13 @@ class TicketSummary extends StatelessWidget {
                                             fontWeight: pw.FontWeight.bold),
                                       ),
                                       pw.SizedBox(height: 30),
-                                      pw.Text("go to the see Qr code tab in the side bar and \nenter the reference number to see the QR code of your ticket",textAlign: pw.TextAlign.center,style: pw.TextStyle(
-                                            fontSize: 20,
-                                            color: PdfColors.red,
-                                            fontWeight: pw.FontWeight.bold) )
+                                      pw.Text(
+                                          "go to the see Qr code tab in the side bar and \nenter the reference number to see the QR code of your ticket",
+                                          textAlign: pw.TextAlign.center,
+                                          style: pw.TextStyle(
+                                              fontSize: 20,
+                                              color: PdfColors.red,
+                                              fontWeight: pw.FontWeight.bold))
                                     ],
                                   ),
                                 ),
@@ -251,23 +249,36 @@ class TicketSummary extends StatelessWidget {
                           final file = File(filePath);
                           await file.writeAsBytes(await pdf.save());
 
+                          // String fileName =
+                          //     DateTime.now().microsecondsSinceEpoch.toString();
+                          // String path = '$customDirectoryPath/$fileName';
+
+                          // screenshotController
+                          //     .captureAndSave(
+                          //       path,
+                          //       pixelRatio: 2.0,
+                          //       delay: const Duration(milliseconds: 10),
+                          //     )
+                          //     .then((value) => print('Saved'));
+
                           //print('PDF saved to $filePath');
                           // ignore: use_build_context_synchronously
                           QuickAlert.show(
                               context: context,
                               type: QuickAlertType.success,
                               title: "saved",
-                              text: 'PDF saved to $filePath. Also see QR by entering reference number in sideBar.',
-                              onConfirmBtnTap: (){
-                                Get.off(HomePage());
-                              }
-                              );
+                              text:
+                                  'PDF saved to $filePath. Also see QR by entering reference number in sideBar.',
+                              onConfirmBtnTap: () {
+                                Get.offAll(HomePage());
+                              });
                         } catch (e) {
                           //print('Error: $e');
-                           // ignore: use_build_context_synchronously
-                           QuickAlert.show(
+                          print(e);
+                          // ignore: use_build_context_synchronously
+                          QuickAlert.show(
                               context: context,
-                              type: QuickAlertType.success,
+                              type: QuickAlertType.error,
                               title: "saved",
                               text: 'Error: $e');
                         }

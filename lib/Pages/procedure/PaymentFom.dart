@@ -226,18 +226,7 @@ class _PaymentFormState extends State<PaymentForm> {
 
                       print(widget.finalSeatView);
 
-                      // for (int i = 0; i < widget.finalSeatView.length; i++) {
-                      //   if (widget.finalSeatView[i] == 2) {
-                      //     widget.finalSeatView[i] = 1;
-                      //   }
-                      // }
-
-                      // print("final seat view");
-                      // print(widget.finalSeatView);
-                      // mongoDatabase.updateTrainSheetView(
-                      //     AvailabilityTile.TrainID!,
-                      //     widget.finalSeatView,
-                      //     AvailabilityTile.ClassType!);
+                     
                     },
                   ),
                 ),

@@ -1,15 +1,23 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart ';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:screenshot/screenshot.dart';
 import '../../Models/Ticket.dart';
 import 'ticketAttri.dart';
 
+// ignore: must_be_immutable
 class FInalTicket extends StatelessWidget {
   final TicketDetails ticket;
   final String RefNumber;
-  const FInalTicket({super.key, required this.RefNumber, required this.ticket});
+  FInalTicket({super.key, required this.RefNumber, required this.ticket});
+  ScreenshotController screenshotController = ScreenshotController();
 
   @override
   Widget build(BuildContext context) {
+    //Create an instance of ScreenshotController
+    _scree();
     return Column(
       children: [
         const SizedBox(
@@ -72,10 +80,16 @@ class FInalTicket extends StatelessWidget {
                       TicketAttribute(
                           attribute: "Price",
                           value: "LKR." + ticket.Price.toString()),
-                      QrImageView(
-                        data: ticket.ticketDetailsToString(ticket),
-                        version: QrVersions.auto,
-                        size: 170.0,
+                      Screenshot(
+                        controller: screenshotController,
+                        child: Container(
+                          decoration: BoxDecoration(color: Colors.white),
+                          child: QrImageView(
+                            data: ticket.ticketDetailsToString(ticket),
+                            version: QrVersions.auto,
+                            size: 170.0,
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -87,5 +101,27 @@ class FInalTicket extends StatelessWidget {
       ],
     );
   }
-}
 
+  _scree() async {
+    if (await Permission.manageExternalStorage.request().isGranted) {
+      const customDirectoryPath = '/storage/emulated/0/Train';
+      final customDirectory = Directory(customDirectoryPath);
+
+      // Create the custom directory if it doesn't exist
+      if (!(await customDirectory.exists())) {
+        await customDirectory.create(recursive: true);
+        print('Custom directory created at: $customDirectoryPath');
+      }
+      String fileName = DateTime.now().microsecondsSinceEpoch.toString();
+      String path = '$customDirectoryPath/$fileName';
+
+      screenshotController
+          .captureAndSave(
+            path,
+            pixelRatio: 2.0,
+            delay: const Duration(milliseconds: 10),
+          )
+          .then((value) => print('Saved'));
+    }
+  }
+}
