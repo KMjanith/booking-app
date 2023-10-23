@@ -14,58 +14,87 @@ import '../Pages/Auth/OTPdialog.dart';
 class ApiServiceLogin {
   //late PaswordReset paswordReset;
   late LoginPage createdOTP;
-  static const String baseUrl = 'http://$baseUrl_1:4000/login';
+  static const String baseUrl =
+      '$baseUrl_1/login';
 
   Future<void> login(BuildContext context, String email, String password,
       http.Client client) async {
-    final Map<String, dynamic> requestBody = {
-      'email': email,
-      'password': password,
-    };
+    try {
+      // Show loading indicator
+      showDialog(
+        context: context,
+        barrierDismissible:
+            false, // Prevent the user from dismissing the dialog
+        builder: (BuildContext context) {
+          return Center(child: CircularProgressIndicator());
+        },
+      );
 
-    final response = await http.post(
-      Uri.parse(baseUrl),
-      headers: {'Content-Type': 'application/json'},
-      body: jsonEncode(requestBody), // Encode the map as JSON
-    );
+      final Map<String, dynamic> requestBody = {
+        'email': email,
+        'password': password,
+      };
 
-    print(response.body);
-    dynamic token = jsonDecode(response.body);
-    print(token["userID"]);
+      final response = await http.post(
+        Uri.parse(baseUrl),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode(requestBody), // Encode the map as JSON
+      );
 
-    AuthManager.token = response.body; //store the token
-    AuthManager.login(); //setting the logged in user true
+      print(response.body);
+      dynamic token = jsonDecode(response.body);
+      print(token["userID"]);
 
-    if (response.statusCode == 200) {
-      // return LoginModel.fromJson(jsonDecode(response.body));
+      AuthManager.tokens = response.body; //store the token
+      AuthManager.login(); //setting the logged in user true
+
+      if (response.statusCode == 200) {
+        // Dismiss the loading indicator
+        Navigator.of(context, rootNavigator: true).pop();
+
+        // ignore: use_build_context_synchronously
+        QuickAlert.show(
+          context: context,
+          type: QuickAlertType.success,
+          title: 'Great',
+          text: 'Successfully logged in',
+          onConfirmBtnTap: () {
+            Get.offAll(HomePage());
+          },
+        );
+      } else {
+        // Dismiss the loading indicator
+        // ignore: use_build_context_synchronously
+        Navigator.of(context, rootNavigator: true).pop();
+
+        // ignore: use_build_context_synchronously
+        QuickAlert.show(
+            context: context,
+            type: QuickAlertType.error,
+            title: 'Oops..',
+            text: 'Check username and password again or verify your email');
+      }
+    } catch (e) {
+      // Handle exceptions here
+      print('Error: $e');
+
+      // Dismiss the loading indicator
+      // ignore: use_build_context_synchronously
+      Navigator.of(context, rootNavigator: true).pop();
 
       // ignore: use_build_context_synchronously
       QuickAlert.show(
         context: context,
-        type: QuickAlertType.success,
-        title: 'Great',
-        text: 'Succesfully logged in',
-        onConfirmBtnTap: () {
-          Get.offAll(HomePage());
-        },
+        type: QuickAlertType.error,
+        title: 'Oops..',
+        text: 'An error occurred during login. Please try again later.',
       );
-    } else {
-      // ignore: use_build_context_synchronously
-      //throw Exception('Failed to load album'); // Update the error message
-      // ignore: use_build_context_synchronously
-      QuickAlert.show(
-          context: context,
-          type: QuickAlertType.error,
-          title: 'Oops..',
-          text:
-              'Check username and pasword again or verify your email'); // Update the error message
     }
-
-    //changes - login eke return type eka LoginModel kiyala set karala thiyenne
   }
 
+
   //Endpoint to send OTP to the given email
-  static const String baseUrlforOTP = 'http://$baseUrl_1:4000/login/sendOTP';
+  static const String baseUrlforOTP = '$baseUrl_1/login/sendOTP';
   static bool verified = false;
 
   Future<void> Sendotp(BuildContext context, String email, Widget Page) async {
@@ -103,9 +132,5 @@ class ApiServiceLogin {
         OriginalOTP: otp,
       ));
     }
-
-    // ignore: use_build_context_synchronously
-
-    //show the OTPInput dialogBox
   }
 }

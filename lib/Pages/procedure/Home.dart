@@ -334,7 +334,7 @@ class HomePage extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.only(left: 20, right: 20),
               child: Text(
-                "We are XYZ company, dedicated to providing the best service to our customers.",
+                "Welcome to Stage Pilot Train Ticket Booking System,we are dedicated to providing the best service to our customers.",
                 textAlign: TextAlign.center,
               ),
             ),
@@ -373,6 +373,32 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
+
+
+            //Go to web site button
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+              child: InkWell(
+                onTap: () {
+                  _goWebSite();
+                },
+                child: Container(
+                    height: 50,
+                    width: 100,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: const Color.fromARGB(255, 255, 0, 0)),
+                    child: const Center(
+                      child: Text(
+                        "visit our Website",
+                        style: TextStyle(color: Colors.white, fontSize: 20,fontWeight: FontWeight.bold),
+                      ),
+                    )),
+              ),
+            ),
+
+            //Follow Us
+            const Info(content: "", title: "Folllow Us"),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               //For facebook Button
               InkWell(
@@ -425,6 +451,15 @@ class HomePage extends StatelessWidget {
     );
   }
 
+  _goWebSite() async {
+    final Uri uri = Uri.parse("https://stage-pilot.onrender.com/");
+    try {
+      if (!await launchUrl(uri)) {
+        throw Exception('Could not launch $uri');
+      }
+    } catch (e) {}
+  }
+
   mapUrl() async {
     final Uri uri = Uri.parse("https://www.google.com/maps");
     try {
@@ -435,7 +470,7 @@ class HomePage extends StatelessWidget {
   }
 
   goYouTube() async {
-    final Uri uri = Uri.parse("https://www.youtube.com/");
+    final Uri uri = Uri.parse("https://youtu.be/LXLh_lEwdB4");
     try {
       if (!await launchUrl(uri)) {
         throw Exception('Could not launch $uri');

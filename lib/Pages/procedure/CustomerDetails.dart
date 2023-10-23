@@ -48,7 +48,7 @@ class CustomerDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     //print(jsonDecode(AuthManager.token)["userID"]);
     if (AuthManager.isLoggedIn) {
-      loginDetails(jsonDecode(AuthManager.token)["userID"]);
+      loginDetails(jsonDecode(AuthManager.tokens)["userID"]);
     }
 
     return Scaffold(
@@ -82,16 +82,16 @@ class CustomerDetails extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 15.0),
-                    child: Center(
-                      child: Text(
-                        "Enter a valid email. we will send you a OTP number to validate your email.that email will use for future communication",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 18),
-                      ),
-                    ),
-                  ),
+                  // const Padding(
+                  //   padding: EdgeInsets.only(top: 15.0),
+                  //   child: Center(
+                  //     child: Text(
+                  //       "Enter a valid email. we will send you a OTP number to validate your email.that email will use for future communication",
+                  //       textAlign: TextAlign.center,
+                  //       style: TextStyle(fontSize: 18),
+                  //     ),
+                  //   ),
+                  // ),
 
                   const SizedBox(
                     height: 10,
@@ -265,7 +265,7 @@ class CustomerDetails extends StatelessWidget {
   Future<void> loginDetails(String userId) async {
     final Map<String, dynamic> requestBody = {"userID": userId};
     final response = await http.post(
-      Uri.parse('http://$baseUrl_1:4000/popupform'),
+      Uri.parse('$baseUrl_1/popupform'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode(requestBody), // Encode the map as JSON
     );

@@ -50,6 +50,7 @@ dependencies:
   screenshot: ^2.1.0
   flutter_lints: ^3.0.0
   url_launcher: ^6.1.14
+  shared_preferences: ^2.0.5
 
 dev_dependencies:
   flutter_test:
@@ -59,7 +60,7 @@ dev_dependencies:
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "Assets/Stage Pilot.png"
+  image_path: "Assets/Untitled-1.png"
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

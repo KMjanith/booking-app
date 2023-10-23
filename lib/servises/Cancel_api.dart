@@ -11,10 +11,18 @@ import 'DatabaseHandeling/constant.dart';
 import '../Pages/procedure/Home.dart';
 
 class CancelBookingApi {
-  String baseUrl = 'http://$baseUrl_1:4000/refund';
+  String baseUrl = '$baseUrl_1/refund';
 
   Future<void> cancelBooking(
       BuildContext context, String ReferenceNo, http.Client client) async {
+    showDialog(
+      context: context,
+      barrierDismissible: false, // Prevent the user from dismissing the dialog
+      builder: (BuildContext context) {
+        return Center(child: CircularProgressIndicator());
+      },
+    );
+
     final Map<String, dynamic> requestBody = {
       'ReferenceNo': ReferenceNo,
     };
@@ -30,6 +38,10 @@ class CancelBookingApi {
 
     //error state
     if (response.statusCode == 200) {
+      // Dismiss the loading indicator
+      // ignore: use_build_context_synchronously
+      Navigator.of(context, rootNavigator: true).pop();
+
       Map<String, dynamic> resultMap =
           json.decode(response.body); //convert result strin g in to a Map
       print(resultMap);
@@ -38,6 +50,10 @@ class CancelBookingApi {
       // return errormessage;
       // ignore: use_build_context_synchronously
     } else {
+      // Dismiss the loading indicator
+      // ignore: use_build_context_synchronously
+      Navigator.of(context, rootNavigator: true).pop();
+
       //map to access the ticket details in another classes
       Map<String, dynamic> errormessage =
           json.decode(response.body); //convert result string in to a Map
@@ -53,10 +69,17 @@ class CancelBookingApi {
   }
 
   //update cancelation
-  String baseUrlCacelationDone = 'http://$baseUrl_1:4000/refund/cancel-booking';
+  String baseUrlCacelationDone = '$baseUrl_1/refund/cancel-booking';
 
   Future<void> CacelationDone(BuildContext context, String ReferenceNo,
       String trainName, String classNAme, List<dynamic> seats) async {
+    showDialog(
+      context: context,
+      barrierDismissible: false, // Prevent the user from dismissing the dialog
+      builder: (BuildContext context) {
+        return Center(child: CircularProgressIndicator());
+      },
+    );
     final Map<String, dynamic> requestBody = {
       'ReferenceNo': ReferenceNo,
       "trainName": trainName,
@@ -75,6 +98,11 @@ class CancelBookingApi {
 
     //error state
     if (response.statusCode != 200) {
+
+      // Dismiss the loading indicator
+      // ignore: use_build_context_synchronously
+      Navigator.of(context, rootNavigator: true).pop();
+
       Map<String, dynamic> errormessage =
           json.decode(response.body); //convert result string in to a Map
       // ignore: use_build_context_synchronously
@@ -85,6 +113,10 @@ class CancelBookingApi {
         text: errormessage["message"],
       ); // Update the error message
     } else {
+
+      // Dismiss the loading indicator
+      // ignore: use_build_context_synchronously
+      Navigator.of(context, rootNavigator: true).pop();
       //map to access the ticket details in another classes
       // ignore: use_build_context_synchronously
       QuickAlert.show(
@@ -101,7 +133,7 @@ class CancelBookingApi {
   }
 
   //end point to get ticket details to generate Qr code
-  String baseUrlForGenerateQrCode = 'http://$baseUrl_1:4000/refund/mobile-Qr';
+  String baseUrlForGenerateQrCode = '$baseUrl_1/refund/mobile-Qr';
 
   Future<String> GenerateQr(
     String ReferenceNo,

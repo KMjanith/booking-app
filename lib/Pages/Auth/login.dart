@@ -107,7 +107,25 @@ class LoginPage extends StatelessWidget {
                         onPressed: () async {
                           await _apiService.login(
                               context, email.text, password.text, client);
-                          // Add the new item using your ApiService
+                          
+
+                          // try {
+                            // showDialog(
+                            //   context: context,
+                            //   barrierDismissible:
+                            //       false, // Prevent the user from dismissing the dialog
+                            //   builder: (BuildContext context) {
+                            //     return Center(
+                            //         child: CircularProgressIndicator());
+                            //   },
+                            // );
+                          //   await _apiService.login(
+                          //       context, email.text, password.text, client);
+                          // } finally {
+                          //   Navigator.of(context, rootNavigator: true)
+                          //       .pop(); // Close the loading dialog
+                          // }
+
                         },
                       ),
                     ),

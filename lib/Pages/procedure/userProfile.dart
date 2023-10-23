@@ -32,7 +32,7 @@ class _MyProfileState extends State<MyProfile> {
     return Scaffold(
       bottomNavigationBar: Bottom_NavigationBar(),
       body: FutureBuilder(
-        future: _fetchLoginDetails(jsonDecode(AuthManager.token)["userID"]),
+        future: _fetchLoginDetails(jsonDecode(AuthManager.tokens)["userID"]),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             // Return a loading indicator while fetching data
@@ -300,7 +300,7 @@ class _MyProfileState extends State<MyProfile> {
   Future<Map<String, dynamic>> _fetchLoginDetails(String userId) async {
     final Map<String, dynamic> requestBody = {"userID": userId};
     final response = await http.post(
-      Uri.parse('http://$baseUrl_1:4000/popupform'),
+      Uri.parse('$baseUrl_1/popupform'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode(requestBody),
     );
@@ -312,7 +312,7 @@ class _MyProfileState extends State<MyProfile> {
 //this method is to fetch users booking details from the database
   Future<void> _fetchBokingDetails(String email) async {
     final response = await http.get(
-      Uri.parse('http://$baseUrl_1:4000/profile/history/${email}'),
+      Uri.parse('$baseUrl_1/profile/history/${email}'),
       headers: {'Content-Type': 'application/json'},
     );
     // Convert the JSON string to a List<Map<String, dynamic>>

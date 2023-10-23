@@ -4,17 +4,15 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:quickalert/quickalert.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
-
-
 import '../Models/resetPassword.dart';
 import '../Pages/Auth/login.dart';
 import 'DatabaseHandeling/constant.dart';
 
 class ResetPasword {
+  static const String baseUrl = '$baseUrl_1/login/resetpassword';
 
-  static const String baseUrl = 'http://$baseUrl_1:4000/login/resetpassword';
-
-  Future<void> ResetPassword(BuildContext context, ResetPasswordModel passwordModel) async {
+  Future<void> ResetPassword(
+      BuildContext context, ResetPasswordModel passwordModel) async {
     final Map<String, dynamic> requestBody = {
       "newpassword": passwordModel.password,
       "confirmpassword": passwordModel.confirmPassword,
@@ -35,8 +33,7 @@ class ResetPasword {
           context: context,
           type: QuickAlertType.error,
           title: 'Oops..',
-          text:
-              response.body)); // Update the error message
+          text: response.body)); // Update the error message
     } else {
       // ignore: use_build_context_synchronously
       QuickAlert.show(
@@ -50,5 +47,4 @@ class ResetPasword {
       );
     }
   }
-  
 }

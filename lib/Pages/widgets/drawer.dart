@@ -55,7 +55,8 @@ class CustomDrawer extends StatelessWidget {
                     title: Text("Log Out"),
                     onTap: () {
                       AuthManager.logout(); //make the user logged out
-                      AuthManager.token = ''; //clear the token
+                      
+                      AuthManager.tokens = ''; //clear the token
                       Navigator.push(context,
                           CupertinoPageRoute(builder: (context) => HomePage()));
                     },

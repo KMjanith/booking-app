@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-
 import '../../servises/DatabaseHandeling/constant.dart';
 
 class PopularTile extends StatefulWidget {
@@ -88,16 +87,7 @@ class _PopularTileState extends State<PopularTile> {
                   child: Container(
                     margin: EdgeInsets.all(10),
                     decoration: const BoxDecoration(
-                      //gradient: AppGradients.customGradient,
-                      //color: Colors.white,
-                      boxShadow: [
-                        /* BoxShadow(
-                          color: Colors.black, // Shadow color
-                          offset: Offset(0, 0), // Offset of the shadow
-                          blurRadius: 5, // Blur radius of the shadow
-                          spreadRadius: 0, // Spread radius of the shadow
-                        ),*/
-                      ],
+                      
                       borderRadius: BorderRadius.all(Radius.circular(20)),
                     ),
                     child: Column(
