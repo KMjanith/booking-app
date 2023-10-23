@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import '../../servises/AuthManager.dart';
 import '../../servises/Cancel_api.dart';
-import '../../servises/DatabaseHandeling/constant.dart';
+import '../../servises/constant.dart';
 import '../Auth/SignUp.dart';
 import '../Auth/login.dart';
 import '../widgets/AppBarCustom.dart';
@@ -16,6 +16,7 @@ class MyProfile extends StatefulWidget {
 
   @override
   State<MyProfile> createState() => _MyProfileState();
+  
 }
 
 class _MyProfileState extends State<MyProfile> {
@@ -32,11 +33,14 @@ class _MyProfileState extends State<MyProfile> {
     return Scaffold(
       bottomNavigationBar: Bottom_NavigationBar(),
       body: FutureBuilder(
-        future: _fetchLoginDetails(jsonDecode(AuthManager.tokens)["userID"]),
+         future: Future.delayed(Duration(seconds: 1), () {
+          // Simulate a delay of 2 seconds before fetching data
+          return _fetchLoginDetails(jsonDecode(AuthManager.tokens)["userID"]);
+        }),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             // Return a loading indicator while fetching data
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
             // Handle errors
             return Center(child: Text('Error: ${snapshot.error}'));
@@ -138,7 +142,7 @@ class _MyProfileState extends State<MyProfile> {
                               )
 
                             //this is the My booking widget
-                            : Container(
+                            : SizedBox(
                                 height: 1000,
                                 width: 50,
                                 child: ListView.builder(

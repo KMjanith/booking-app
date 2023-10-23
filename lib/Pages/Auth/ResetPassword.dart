@@ -7,7 +7,7 @@ import '../widgets/bottomNavigator.dart';
 import '../widgets/clipPath.dart';
 import '../widgets/drawer.dart';
 import '../widgets/input_fields/normal_input.dart';
-import 'SignUp.dart';
+
 
 class PasswordReset extends StatelessWidget {
   final String email;
@@ -52,7 +52,7 @@ class PasswordReset extends StatelessWidget {
                       controller: password_1,
                       labelText: "Enter Password",
                       obscureText: false,
-                      icon: const Icon(Icons.email)),
+                      icon: const Icon(Icons.password)),
                   const SizedBox(
                     height: 10,
                   ),
@@ -99,8 +99,8 @@ class PasswordReset extends StatelessWidget {
             ),
           ),
           CustomAppBar(
-            page: [HomePage(), SignUpPage()],
-            name: const ["Home", "Sign up"],
+            page: [HomePage(),],
+            name: const ["Home"],
           ),
         ],
       ),

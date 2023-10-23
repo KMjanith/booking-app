@@ -6,7 +6,7 @@ import 'package:quickalert/widgets/quickalert_dialog.dart';
 import 'dart:convert';
 import '../Models/item.dart';
 import '../Pages/Auth/login.dart';
-import 'DatabaseHandeling/constant.dart';
+import 'constant.dart';
 
 class ApiService {
   static const String baseUrl = '$baseUrl_1/register';

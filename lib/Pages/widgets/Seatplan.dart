@@ -22,9 +22,10 @@ class _ColoredGridViewState extends State<ColoredGridView> {
 
   void _toggleCell(int index, List<int> gridData) {
     setState(() {
-      print(gridData[index]);
+      //print(gridData[index]);
       if (gridData[index] == 0) {
-        if (passengerCountSelector > widget.maxSeatCount) {
+        if (passengerCountSelector > widget.maxSeatCount ) {
+          
           QuickAlert.show(
             context: context,
             type: QuickAlertType.error,
@@ -32,19 +33,21 @@ class _ColoredGridViewState extends State<ColoredGridView> {
             text:
                 'You have selected the seats\nbeyond the passenger limit.\nYou can select only ${widget.maxSeatCount} seats only',
           );
+        
         } else {
           gridData[index] = 2;
           passengerCountSelector = passengerCountSelector + 1;
-          print(passengerCountSelector);
+          //print("selectedseats $passengerCountSelector");
         }
       } // Toggle between 0 and 1
       else if (gridData[index] == 2) {
         gridData[index] = 0;
         passengerCountSelector = passengerCountSelector - 1;
-        print(passengerCountSelector);
+        //print("selectedseats $passengerCountSelector");
       } else {
         gridData[index] = gridData[index];
       }
+      //print("selectedseats $passengerCountSelector");
     });
   }
 
@@ -82,9 +85,9 @@ class _ColoredGridViewState extends State<ColoredGridView> {
                   bottomRight: Radius.circular(10))),
           child: GestureDetector(
             onTap: () {
-              print(index);
+              //print(index);
               _toggleCell(index, widget.gridData);
-              print(widget.gridData);
+              //print(widget.gridData);
             },
             child: Container(
               color: cellColor,

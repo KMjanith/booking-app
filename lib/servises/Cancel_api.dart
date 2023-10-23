@@ -6,7 +6,7 @@ import 'package:quickalert/widgets/quickalert_dialog.dart';
 import 'dart:convert';
 //import '../Models/Ticket.dart';
 import '../Pages/Cancel/CancelBooking.dart';
-import 'DatabaseHandeling/constant.dart';
+import 'constant.dart';
 //import '../Pages/Cancel/CancelBooking.dart';
 import '../Pages/procedure/Home.dart';
 
@@ -135,9 +135,12 @@ class CancelBookingApi {
   //end point to get ticket details to generate Qr code
   String baseUrlForGenerateQrCode = '$baseUrl_1/refund/mobile-Qr';
 
+  
   Future<String> GenerateQr(
     String ReferenceNo,
   ) async {
+
+    
     final Map<String, dynamic> requestBody = {
       'ReferenceNo': ReferenceNo,
     };

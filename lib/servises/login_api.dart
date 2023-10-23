@@ -8,7 +8,7 @@ import 'dart:convert';
 import '../Pages/Auth/login.dart';
 import '../Pages/procedure/Home.dart';
 import 'AuthManager.dart';
-import 'DatabaseHandeling/constant.dart';
+import 'constant.dart';
 import '../Pages/Auth/OTPdialog.dart';
 
 class ApiServiceLogin {

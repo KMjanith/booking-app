@@ -380,7 +380,7 @@ class HomePage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
               child: InkWell(
                 onTap: () {
-                  _goWebSite();
+                  goWebSite();
                 },
                 child: Container(
                     height: 50,
@@ -451,7 +451,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  _goWebSite() async {
+ goWebSite() async {
     final Uri uri = Uri.parse("https://stage-pilot.onrender.com/");
     try {
       if (!await launchUrl(uri)) {

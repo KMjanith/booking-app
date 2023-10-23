@@ -46,7 +46,7 @@ class CustomDrawer extends StatelessWidget {
                     onTap: () => Get.to(SeeQr()),
                   ),
                   ListTile(
-                    leading: Icon(Icons.history),
+                    leading: Icon(Icons.person_2_rounded),
                     title: Text("My profile"),
                     onTap: () => Get.to(MyProfile()),
                   ),

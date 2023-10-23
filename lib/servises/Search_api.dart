@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'DatabaseHandeling/constant.dart';
+import 'constant.dart';
 
 
 class SerachTrain {

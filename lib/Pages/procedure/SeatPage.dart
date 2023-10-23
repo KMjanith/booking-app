@@ -13,7 +13,6 @@ import 'take_inputs_page.dart';
 
 class SeatView extends StatelessWidget {
   final TrainModel train_details;
-  //final ObjectId TraiId;
   final String className;
   final int seatCount;
   final List<int> seet_view;
@@ -28,11 +27,10 @@ class SeatView extends StatelessWidget {
       required this.className,
       required this.seatCount,
       required this.seet_view,
-      //required this.TraiId,
       required this.maxSeatCount,
       required this.Price});
 
-  //static List<int>? updatedSeatView;
+
 
   @override
   Widget build(BuildContext context) {

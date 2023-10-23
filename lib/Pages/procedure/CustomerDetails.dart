@@ -7,7 +7,7 @@ import 'package:quickalert/quickalert.dart';
 import '../../Models/Ticket.dart';
 import '../../Models/Trainmodel.dart';
 import '../../servises/AuthManager.dart';
-import '../../servises/DatabaseHandeling/constant.dart';
+import '../../servises/constant.dart';
 import '../widgets/AppBarCustom.dart';
 import '../widgets/AvailabilityTile.dart';
 import '../widgets/Colors.dart';
@@ -96,6 +96,7 @@ class CustomerDetails extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
+
                   Center(
                       child: Text(
                     "Total Price: LKR" + price.toString(),
@@ -106,7 +107,7 @@ class CustomerDetails extends StatelessWidget {
                   //fsrt name
 
                   NormalInput(
-                    keyboardType: TextInputType.text,
+                      keyboardType: TextInputType.text,
                       icon: const Icon(Icons.person_2_rounded),
                       controller: firstName,
                       labelText: 'First Name',
@@ -117,7 +118,7 @@ class CustomerDetails extends StatelessWidget {
                   //lastname
 
                   NormalInput(
-                    keyboardType: TextInputType.text,
+                      keyboardType: TextInputType.text,
                       icon: const Icon(Icons.person_2_rounded),
                       controller: lastName,
                       labelText: 'Last Name',
@@ -126,7 +127,7 @@ class CustomerDetails extends StatelessWidget {
                   //email
 
                   NormalInput(
-                    keyboardType: TextInputType.emailAddress,
+                      keyboardType: TextInputType.emailAddress,
                       icon: const Icon(Icons.email_rounded),
                       controller: email, // Replace with your controller
                       labelText: 'Email',
@@ -136,7 +137,7 @@ class CustomerDetails extends StatelessWidget {
                   //NIC
 
                   NormalInput(
-                    keyboardType: TextInputType.text,
+                      keyboardType: TextInputType.text,
                       icon: const Icon(Icons.perm_identity),
                       controller: NIC, // Replace with your controller
                       labelText: 'NIC',
@@ -145,7 +146,7 @@ class CustomerDetails extends StatelessWidget {
                   const SizedBox(height: 10),
                   //Mobile number
                   NormalInput(
-                    keyboardType: TextInputType.number,
+                      keyboardType: TextInputType.number,
                       icon: const Icon(Icons.mobile_friendly_rounded),
                       controller: mobile, // Replace with your controller
                       labelText: 'Mobile',
@@ -169,6 +170,18 @@ class CustomerDetails extends StatelessWidget {
                                   BorderRadius.all(Radius.circular(10))),
                           child: TextButton(
                             onPressed: () {
+                              if (passengerCount == 0) {
+                                QuickAlert.show(
+                                  context: context,
+                                  type: QuickAlertType.error,
+                                  title: 'Oops...',
+                                  text: 'Select at least one seat',
+                                  onCancelBtnTap: () {
+                                    Get.back();
+                                  },
+                                );
+                                return;
+                              }
                               print(firstName.text);
 
                               //field fill checking
