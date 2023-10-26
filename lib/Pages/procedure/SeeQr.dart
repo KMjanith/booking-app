@@ -77,6 +77,7 @@ class _SeeQrState extends State<SeeQr> {
 
                       //email
                       NormalInput(
+                        key: Key("EnterRef"),
                         keyboardType: TextInputType.text,
                           icon: const Icon(Icons.numbers),
                           controller: ReferenceNo,

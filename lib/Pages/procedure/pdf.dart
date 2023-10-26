@@ -6,7 +6,6 @@ import 'package:pdf/widgets.dart' as pw;
 import 'package:permission_handler/permission_handler.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
-
 import '../widgets/TicketFinal.dart';
 import '../widgets/drawer.dart';
 import 'Home.dart';
@@ -42,7 +41,7 @@ class PdfMaker extends StatelessWidget {
               );
               if (await Permission.manageExternalStorage.request().isGranted) {
                 try {
-                  const customDirectoryPath = '/storage/emulated/0/Train';
+                  const customDirectoryPath = '/storage/emulated/0/Download/Train';
                   final customDirectory = Directory(customDirectoryPath);
 
                   // Create the custom directory if it doesn't exist
@@ -52,7 +51,7 @@ class PdfMaker extends StatelessWidget {
                   }
 
                   const filePath =
-                      '/storage/emulated/0/Train/my_custom_pdf.pdf';
+                      '/storage/emulated/0/Download/Train/my_custom_pdf.pdf';
 
                   // Save the PDF to the custom path
                   final file = File(filePath);
@@ -65,7 +64,7 @@ class PdfMaker extends StatelessWidget {
                       type: QuickAlertType.success,
                       title: "saved",
                       text:
-                          'PDF saved to $filePath. if you want to see the QR code of your booking go to the QR section and enter the ticket reference number. ',
+                          'PDF has saved to the Download folder. You can view it from there ',
                       onConfirmBtnTap: () {
                         Get.offAll(HomePage());
                       

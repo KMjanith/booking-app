@@ -107,6 +107,7 @@ class CustomerDetails extends StatelessWidget {
                   //fsrt name
 
                   NormalInput(
+                    key: Key("firstNme"),
                       keyboardType: TextInputType.text,
                       icon: const Icon(Icons.person_2_rounded),
                       controller: firstName,
@@ -118,6 +119,7 @@ class CustomerDetails extends StatelessWidget {
                   //lastname
 
                   NormalInput(
+                    key: Key("lsstNAme"),
                       keyboardType: TextInputType.text,
                       icon: const Icon(Icons.person_2_rounded),
                       controller: lastName,
@@ -127,6 +129,7 @@ class CustomerDetails extends StatelessWidget {
                   //email
 
                   NormalInput(
+                    key: Key("Email"),
                       keyboardType: TextInputType.emailAddress,
                       icon: const Icon(Icons.email_rounded),
                       controller: email, // Replace with your controller
@@ -137,6 +140,7 @@ class CustomerDetails extends StatelessWidget {
                   //NIC
 
                   NormalInput(
+                    key: Key("NIC"),
                       keyboardType: TextInputType.text,
                       icon: const Icon(Icons.perm_identity),
                       controller: NIC, // Replace with your controller
@@ -146,6 +150,7 @@ class CustomerDetails extends StatelessWidget {
                   const SizedBox(height: 10),
                   //Mobile number
                   NormalInput(
+                    key: Key("mobile"),
                       keyboardType: TextInputType.number,
                       icon: const Icon(Icons.mobile_friendly_rounded),
                       controller: mobile, // Replace with your controller

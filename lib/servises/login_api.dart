@@ -6,7 +6,6 @@ import 'package:quickalert/quickalert.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
 import 'dart:convert';
 import '../Pages/Auth/login.dart';
-import '../Pages/procedure/Home.dart';
 import 'AuthManager.dart';
 import 'constant.dart';
 import '../Pages/Auth/OTPdialog.dart';
@@ -17,19 +16,9 @@ class ApiServiceLogin {
   static const String baseUrl =
       '$baseUrl_1/login';
 
-  Future<void> login(BuildContext context, String email, String password,
+  Future<int> login(BuildContext context, String email, String password,
       http.Client client) async {
-    try {
-      // Show loading indicator
-      showDialog(
-        context: context,
-        barrierDismissible:
-            false, // Prevent the user from dismissing the dialog
-        builder: (BuildContext context) {
-          return Center(child: CircularProgressIndicator());
-        },
-      );
-
+  
       final Map<String, dynamic> requestBody = {
         'email': email,
         'password': password,
@@ -48,48 +37,34 @@ class ApiServiceLogin {
       AuthManager.tokens = response.body; //store the token
       AuthManager.login(); //setting the logged in user true
 
-      if (response.statusCode == 200) {
-        // Dismiss the loading indicator
-        Navigator.of(context, rootNavigator: true).pop();
+      return response.statusCode;
+      // if (response.statusCode == 200) {
+      //   // Dismiss the loading indicator
+      //   Navigator.of(context, rootNavigator: true).pop();
 
-        // ignore: use_build_context_synchronously
-        QuickAlert.show(
-          context: context,
-          type: QuickAlertType.success,
-          title: 'Great',
-          text: 'Successfully logged in',
-          onConfirmBtnTap: () {
-            Get.offAll(HomePage());
-          },
-        );
-      } else {
-        // Dismiss the loading indicator
-        // ignore: use_build_context_synchronously
-        Navigator.of(context, rootNavigator: true).pop();
+      //   // ignore: use_build_context_synchronously
+      //   QuickAlert.show(
+      //     context: context,
+      //     type: QuickAlertType.success,
+      //     title: 'Great',
+      //     text: 'Successfully logged in',
+      //     onConfirmBtnTap: () {
+      //       Get.offAll(HomePage());
+      //     },
+      //   );
+      // } else {
+      //   // Dismiss the loading indicator
+      //   // ignore: use_build_context_synchronously
+      //   Navigator.of(context, rootNavigator: true).pop();
 
-        // ignore: use_build_context_synchronously
-        QuickAlert.show(
-            context: context,
-            type: QuickAlertType.error,
-            title: 'Oops..',
-            text: 'Check username and password again or verify your email');
-      }
-    } catch (e) {
-      // Handle exceptions here
-      print('Error: $e');
-
-      // Dismiss the loading indicator
-      // ignore: use_build_context_synchronously
-      Navigator.of(context, rootNavigator: true).pop();
-
-      // ignore: use_build_context_synchronously
-      QuickAlert.show(
-        context: context,
-        type: QuickAlertType.error,
-        title: 'Oops..',
-        text: 'An error occurred during login. Please try again later.',
-      );
-    }
+      //   // ignore: use_build_context_synchronously
+      //   QuickAlert.show(
+      //       context: context,
+      //       type: QuickAlertType.error,
+      //       title: 'Oops..',
+      //       text: 'Check username and password again or verify your email');
+      // }
+    
   }
 
 

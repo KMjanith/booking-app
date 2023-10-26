@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:quickalert/quickalert.dart';
 import '../../servises/login_api.dart';
 import '../procedure/Home.dart';
 import '../widgets/AppBarCustom.dart';
@@ -22,9 +23,8 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     http.Client client = http.Client();
-    
+
     return Scaffold(
       bottomNavigationBar: Bottom_NavigationBar(),
       body: Stack(
@@ -61,8 +61,9 @@ class LoginPage extends StatelessWidget {
 
                   //email
                   NormalInput(
-                    keyboardType: TextInputType.text,
-                    icon: const Icon(Icons.email_rounded),
+                      key: Key('emailInput'),
+                      keyboardType: TextInputType.text,
+                      icon: const Icon(Icons.email_rounded),
                       controller: email,
                       labelText: "email",
                       obscureText: false),
@@ -71,8 +72,9 @@ class LoginPage extends StatelessWidget {
                   ),
                   //password
                   NormalInput(
-                    keyboardType: TextInputType.text,
-                    icon: const Icon(Icons.password_rounded),
+                      key: Key("passwordInput"),
+                      keyboardType: TextInputType.text,
+                      icon: const Icon(Icons.password_rounded),
                       controller: password,
                       labelText: "password",
                       obscureText: true),
@@ -82,7 +84,6 @@ class LoginPage extends StatelessWidget {
                     child: TextButton(
                         onPressed: () {
                           showForgotPasswordDialog(context);
-
                         },
                         child: const Text(
                           "forgot password?",
@@ -90,6 +91,7 @@ class LoginPage extends StatelessWidget {
                         )),
                   ),
 
+//LOGIN button
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 6.0),
                     child: Container(
@@ -99,33 +101,58 @@ class LoginPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: TextButton(
+                        key: const Key('loginButton'),
                         child: const Text("Log in",
                             style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold)),
                         onPressed: () async {
-                          await _apiService.login(
+                          // Show loading indicator
+                          showDialog(
+                            context: context,
+                            barrierDismissible:
+                                false, // Prevent the user from dismissing the dialog
+                            builder: (BuildContext context) {
+                              return Center(child: CircularProgressIndicator());
+                            },
+                          );
+
+                          await Future.delayed(const Duration(seconds: 1));
+
+                          // ignore: use_build_context_synchronously
+                          final response = await _apiService.login(
                               context, email.text, password.text, client);
+
+                          if (response == 200) {
+                            // Dismiss the loading indicator
+                            // ignore: use_build_context_synchronously
+                            Navigator.of(context, rootNavigator: true).pop();
+
+                            // ignore: use_build_context_synchronously
+                            QuickAlert.show(
                           
+                              context: context,
+                              type: QuickAlertType.success,
+                              title: 'Great',
+                              text: 'Successfully logged in',
+                              onConfirmBtnTap: () {
+                                Get.offAll(HomePage());
+                              },
+                            );
+                          } else {
+                            // Dismiss the loading indicator
+                            // ignore: use_build_context_synchronously
+                            Navigator.of(context, rootNavigator: true).pop();
 
-                          // try {
-                            // showDialog(
-                            //   context: context,
-                            //   barrierDismissible:
-                            //       false, // Prevent the user from dismissing the dialog
-                            //   builder: (BuildContext context) {
-                            //     return Center(
-                            //         child: CircularProgressIndicator());
-                            //   },
-                            // );
-                          //   await _apiService.login(
-                          //       context, email.text, password.text, client);
-                          // } finally {
-                          //   Navigator.of(context, rootNavigator: true)
-                          //       .pop(); // Close the loading dialog
-                          // }
-
+                            // ignore: use_build_context_synchronously
+                            QuickAlert.show(
+                                context: context,
+                                type: QuickAlertType.error,
+                                title: 'Oops..',
+                                text:
+                                    'Check username and password again or verify your email');
+                          }
                         },
                       ),
                     ),
@@ -168,7 +195,7 @@ class LoginPage extends StatelessWidget {
   }
 
 //function to show the dialog box to enter the email when forget password button is clicked
- void showForgotPasswordDialog(BuildContext context) {
+  void showForgotPasswordDialog(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -192,12 +219,13 @@ class LoginPage extends StatelessWidget {
                       return const Center(child: CircularProgressIndicator());
                     });
 
-                await _apiService.Sendotp(context,
+                await _apiService.Sendotp(
+                    context,
                     _emailController.text,
-                    PasswordReset(email: _emailController
+                    PasswordReset(
+                        email: _emailController
                             .text)); //sending the otp to the mail
                 _disposed(); //clear email textfield
-
               },
               child: Text("Submit"),
             ),

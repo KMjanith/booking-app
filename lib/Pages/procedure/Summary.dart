@@ -231,7 +231,7 @@ class TicketSummary extends StatelessWidget {
                           .isGranted) {
                         try {
                           const customDirectoryPath =
-                              '/storage/emulated/0/Train';
+                              '/storage/emulated/0/Download/Train';
                           final customDirectory =
                               Directory(customDirectoryPath);
 
@@ -243,7 +243,7 @@ class TicketSummary extends StatelessWidget {
                           }
 
                           const filePath =
-                              '/storage/emulated/0/Train/my_custom_pdf.pdf';
+                              '/storage/emulated/0/Download/Train/my_custom_pdf.pdf';
 
                           // Save the PDF to the custom path
                           final file = File(filePath);

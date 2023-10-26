@@ -106,12 +106,7 @@ class HomePage extends StatelessWidget {
                                 color: Color.fromARGB(255, 3, 3, 3)),
                           ),
                           Spacer(),
-                          // Icon(
-                          //   Icons.arrow_forward_sharp,
-                          //   size: 35,
-                          //   color: Colors.black,
-                          // )
-                          Image.asset("Assets/giphy.gif"),
+                          Image.asset("Assets/giphy.gif",width: 36.5,),
                         ],
                       ),
                     ),
@@ -438,7 +433,7 @@ class HomePage extends StatelessWidget {
           if (!AuthManager.isLoggedIn)
             CustomAppBar(
               page: [LoginPage(), SignUpPage()],
-              name: const ["Login", "Sign up"],
+              name: const ["Login", "Signup"],
             ),
           if (AuthManager.isLoggedIn)
             CustomAppBar(

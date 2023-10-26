@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 
 class NormalInput extends StatefulWidget {
   final TextEditingController controller;
+  final Key key;
   final String labelText;
   final bool obscureText;
   final Icon icon;
   final TextInputType keyboardType;
 
   const NormalInput({
+    required this.key,
     required this.controller,
     required this.labelText,
     required this.obscureText,
@@ -31,10 +33,12 @@ class _NormalInputState extends State<NormalInput> {
               color: Colors.white.withOpacity(0.05),
               borderRadius: BorderRadius.circular(10)),
           child: TextField(
+            key: widget.key,
             keyboardType: widget.keyboardType,
             controller: widget.controller,
             obscureText: widget.obscureText,
             decoration: InputDecoration(
+              
                 icon: widget.icon,
                 labelText: widget.labelText,
                 labelStyle: const TextStyle(

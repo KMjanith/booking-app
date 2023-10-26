@@ -104,6 +104,7 @@ class FirstPage extends StatelessWidget {
 
                   //passenger count input
                   NormalInput(
+                    key: Key("passenger"),
                     keyboardType: TextInputType.number,
                       icon: const Icon(Icons.person),
                       controller: _PasegerCount,
@@ -169,7 +170,7 @@ class FirstPage extends StatelessWidget {
           if (!AuthManager.isLoggedIn)
             CustomAppBar(
               page: [LoginPage(), SignUpPage()],
-              name: const ["Login", "Sign up"],
+              name: const ["Login", "Signup"],
             ),
           if (AuthManager.isLoggedIn)
             CustomAppBar(

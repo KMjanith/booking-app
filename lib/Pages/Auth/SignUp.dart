@@ -1,8 +1,9 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-
-
+import 'package:http/http.dart' as http;
+import 'package:quickalert/quickalert.dart';
 import '../../Models/item.dart';
 import '../../servises/register_api.dart';
 import '../procedure/Home.dart';
@@ -26,6 +27,7 @@ class SignUpPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    http.Client client = http.Client();
     return Scaffold(
       bottomNavigationBar: Bottom_NavigationBar(),
       body: Stack(
@@ -52,19 +54,20 @@ class SignUpPage extends StatelessWidget {
                               color: Color.fromARGB(255, 92, 7, 47))),
                     ),
                   ),
-                  
+
                   //Image.asset("Assets/register.png"),
-                  
-                  Text("Sign up to book your train ticket in just a few clicks.",
+
+                  const Text(
+                      "Sign up to book your train ticket in just a few clicks.",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          fontSize: 16,
-                          color: Color.fromARGB(255, 92, 7, 47))),
-                          const SizedBox(
+                          fontSize: 16, color: Color.fromARGB(255, 92, 7, 47))),
+                  const SizedBox(
                     height: 10,
                   ),
                   //input fields
                   NormalInput(
+                    key: Key("firstName"),
                     keyboardType: TextInputType.text,
                     controller: firstName,
                     labelText: "First Name",
@@ -76,6 +79,7 @@ class SignUpPage extends StatelessWidget {
                   ),
 
                   NormalInput(
+                    key: Key("lastName"),
                     keyboardType: TextInputType.text,
                     controller: lastName,
                     labelText: "Last Name",
@@ -86,6 +90,7 @@ class SignUpPage extends StatelessWidget {
                     height: 10,
                   ),
                   NormalInput(
+                    key: Key("emalail"),
                     keyboardType: TextInputType.emailAddress,
                     controller: email,
                     labelText: "Email",
@@ -99,6 +104,7 @@ class SignUpPage extends StatelessWidget {
                   /*NormalInput(controller: NIC, labelText: "NIC number",
                       obscureText: false),*/
                   NormalInput(
+                    key: Key("Tel"),
                       keyboardType: TextInputType.number,
                       icon: Icon(Icons.phone_android),
                       controller: TelephoneNumber,
@@ -108,7 +114,8 @@ class SignUpPage extends StatelessWidget {
                     height: 10,
                   ),
                   NormalInput(
-                    keyboardType: TextInputType.text,
+                    key: Key("NIC"),
+                      keyboardType: TextInputType.text,
                       icon: Icon(Icons.perm_identity),
                       controller: NIC,
                       labelText: "NIC",
@@ -117,7 +124,8 @@ class SignUpPage extends StatelessWidget {
                     height: 10,
                   ),
                   NormalInput(
-                    keyboardType: TextInputType.text,
+                    key: Key("password"),
+                      keyboardType: TextInputType.text,
                       icon: Icon(Icons.password),
                       controller: password,
                       labelText: "Password",
@@ -141,26 +149,7 @@ class SignUpPage extends StatelessWidget {
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold)),
                         onPressed: () async {
-                          final newItem = Item(
-                            NIC: NIC.text,
-                            firstName: firstName.text,
-                            lastName: lastName.text,
-                            mobile: TelephoneNumber.text,
-                            email: email.text,
-                            password: password.text,
-                          );
-
-                          print(newItem.lastName);
-
-                          //  showDialog(
-                          //      context: context,
-                          //     builder: (context) {
-                          //        return const Center(
-                          //            child: CircularProgressIndicator());
-                          //      });
-                          await _apiService.addItem(context, newItem);
-                          _disposed();
-                          //Navigator.of(context).pop();
+                          _signUpMethod(context, client);
                         },
                       ),
                     ),
@@ -202,5 +191,65 @@ class SignUpPage extends StatelessWidget {
     email.text = '';
     password.text = '';
     NIC.text = '';
+  }
+
+  void _signUpMethod(BuildContext context,http.Client client) async {
+    // Show loading indicator
+    showDialog(
+      context: context,
+      barrierDismissible: false, // Prevent the user from dismissing the dialog
+      builder: (BuildContext context) {
+        return const Center(child: CircularProgressIndicator());
+      },
+    );
+
+    final newItem = Item(
+      NIC: NIC.text,
+      firstName: firstName.text,
+      lastName: lastName.text,
+      mobile: TelephoneNumber.text,
+      email: email.text,
+      password: password.text,
+    );
+
+    print(newItem.lastName);
+
+    //1 second delay for fetching data
+    await Future.delayed(const Duration(seconds: 1));
+
+    final result = await _apiService.addItem(newItem, client);
+    _disposed();
+
+    if (result["statusCode"] != 200) {
+      // Dismiss the loading indicator
+      // ignore: use_build_context_synchronously
+      Navigator.of(context, rootNavigator: true).pop();
+
+      Map<String, dynamic> errormessage =
+          json.decode(result["body"]); //convert result string in to a Map
+
+      // ignore: use_build_context_synchronously
+      throw Exception(QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          title: 'Oops..',
+          text: errormessage["error"]));
+    } else {
+      // Dismiss the loading indicator
+      // ignore: use_build_context_synchronously
+      Navigator.of(context, rootNavigator: true).pop();
+      print('Item added');
+      // ignore: use_build_context_synchronously
+      QuickAlert.show(
+        context: context,
+        type: QuickAlertType.success,
+        title: 'Registered',
+        text:
+            "verification email has sent to your email.please verify the email and log in",
+        onConfirmBtnTap: () {
+          Get.off(LoginPage());
+        },
+      );
+    }
   }
 }

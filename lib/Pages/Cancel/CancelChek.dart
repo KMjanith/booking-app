@@ -1,5 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:http/http.dart' as http;
+import 'package:quickalert/quickalert.dart';
+import 'package:quickalert/widgets/quickalert_dialog.dart';
 import '../../servises/Cancel_api.dart';
 import '../procedure/Home.dart';
 import '../widgets/AppBarCustom.dart';
@@ -7,10 +13,10 @@ import '../widgets/bottomNavigator.dart';
 import '../widgets/clipPath.dart';
 import '../widgets/drawer.dart';
 import '../widgets/input_fields/normal_input.dart';
+import 'CancelBooking.dart';
 
 // ignore: must_be_immutable
 class CancelCheak extends StatelessWidget {
-
   CancelCheak({super.key});
   final TextEditingController ReferenceNo = TextEditingController();
 
@@ -18,7 +24,6 @@ class CancelCheak extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     http.Client client = http.Client();
     return Scaffold(
       bottomNavigationBar: Bottom_NavigationBar(),
@@ -67,8 +72,9 @@ class CancelCheak extends StatelessWidget {
 
                       //email
                       NormalInput(
-                        keyboardType: TextInputType.text,
-                        icon: const Icon(Icons.numbers),
+                        key: Key("check ticket"),
+                          keyboardType: TextInputType.text,
+                          icon: const Icon(Icons.numbers),
                           controller: ReferenceNo,
                           labelText: "Reference no",
                           obscureText: false),
@@ -85,19 +91,67 @@ class CancelCheak extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: TextButton(
-                            child: const Text("Check",
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold)),
-                            onPressed: () async {
-                            
-                              await cancelBookingApi.cancelBooking(
-                                  context, ReferenceNo.text, client);
-                                 // ignore: use_build_context_synchronously
-                             
-                            },
-                          ),
+                              child: const Text("Check",
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold)),
+                              onPressed: () async {
+                                showDialog(
+                                  context: context,
+                                  barrierDismissible:
+                                      false, // Prevent the user from dismissing the dialog
+                                  builder: (BuildContext context) {
+                                    return const Center(
+                                        child: CircularProgressIndicator());
+                                  },
+                                );
+
+                                //1 second delay for fetching data
+                                await Future.delayed(
+                                    const Duration(seconds: 1));
+
+                                final Map<String, dynamic> result =
+                                    // ignore: use_build_context_synchronously
+                                    await cancelBookingApi.cancelBooking(
+                                        context, ReferenceNo.text, client);
+                                // ignore: use_build_context_synchronously
+                                if (result['statusCode'] == 200) {
+                                  // Dismiss the loading indicator
+                                  // ignore: use_build_context_synchronously
+                                  Navigator.of(context, rootNavigator: true)
+                                      .pop();
+
+                                  Map<String, dynamic> resultMap = json.decode(
+                                      result[
+                                          'body']); //convert result strin g in to a Map
+                                  print(resultMap);
+
+                                  Get.to(CancelBooking(resultMap: resultMap));
+
+                                  // return errormessage;
+                                  // ignore: use_build_context_synchronously
+                                } else {
+                                  // Dismiss the loading indicator
+                                  // ignore: use_build_context_synchronously
+                                  Navigator.of(context, rootNavigator: true)
+                                      .pop();
+
+                                  //map to access the ticket details in another classes
+                                  Map<String, dynamic> errormessage =
+                                      json.decode(result[
+                                          'body']); //convert result string in to a Map
+
+                                  // ignore: use_build_context_synchronously
+                                  QuickAlert.show(
+                                    context: context,
+                                    type: QuickAlertType.error,
+                                    title: 'Oops..',
+                                    text: errormessage["error"],
+                                  );
+                                  //throw Exception('Failed to search cancel'); // Update the error message
+                                }
+                              }),
                         ),
                       ),
                       const SizedBox(

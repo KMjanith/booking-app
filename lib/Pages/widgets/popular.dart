@@ -75,7 +75,7 @@ class _PopularTileState extends State<PopularTile> {
                           return AlertDialog(
                             content: Column(
                               children: [
-                                  Text(popular_title[index],style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
+                                  Text(popular_title[index],style: TextStyle(fontSize: 25),),
                                   SizedBox(height: 10,),
                                   Text(popular_content[index],style: TextStyle(fontSize: 18),)
                               ],
