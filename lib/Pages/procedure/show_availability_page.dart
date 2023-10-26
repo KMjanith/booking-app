@@ -34,15 +34,7 @@ class TrainDisplay extends StatelessWidget {
       bottomNavigationBar: Bottom_NavigationBar(),
       body: Stack(children: [
         const clipPath(),
-        // const Positioned(
-        //     top: 120,
-        //     left: 80,
-        //     right: 0,
-        //     child: Text("Available Trains",
-        //         style: TextStyle(
-        //             fontSize: 30,
-        //             fontWeight: FontWeight.bold,
-        //             color: Color.fromARGB(255, 92, 7, 47)))),
+       
         Positioned(
           top: 100,
           left: 0,
@@ -51,7 +43,7 @@ class TrainDisplay extends StatelessWidget {
           child: SizedBox(
             height: 700,
             child: FutureBuilder(
-              //future: mongoDatabase.getDataStation(from, to, Date),
+             
               future: searchTrain.getTrains(
                   from, to, Actual_date, passengerCount, Actual_date),
               builder: (context, AsyncSnapshot snapshot) {

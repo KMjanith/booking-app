@@ -268,7 +268,7 @@ class TicketSummary extends StatelessWidget {
                               type: QuickAlertType.success,
                               title: "saved",
                               text:
-                                  'PDF saved to $filePath. Also see QR by entering reference number in sideBar.',
+                                  'PDF saved to a new folder named Train in Download folder along with the QR_code.png.',
                               onConfirmBtnTap: () {
                                 Get.offAll(HomePage());
                               });

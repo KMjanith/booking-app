@@ -1,10 +1,13 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:quickalert/quickalert.dart';
 import '../../servises/AuthManager.dart';
 import '../../servises/Cancel_api.dart';
 import '../../servises/constant.dart';
 import '../Auth/SignUp.dart';
 import '../Auth/login.dart';
+import '../Cancel/CancelBooking.dart';
 import '../widgets/AppBarCustom.dart';
 import '../widgets/bottomNavigator.dart';
 import '../widgets/clipPath.dart';
@@ -16,7 +19,6 @@ class MyProfile extends StatefulWidget {
 
   @override
   State<MyProfile> createState() => _MyProfileState();
-  
 }
 
 class _MyProfileState extends State<MyProfile> {
@@ -33,7 +35,7 @@ class _MyProfileState extends State<MyProfile> {
     return Scaffold(
       bottomNavigationBar: Bottom_NavigationBar(),
       body: FutureBuilder(
-         future: Future.delayed(Duration(seconds: 1), () {
+        future: Future.delayed(Duration(seconds: 1), () {
           // Simulate a delay of 2 seconds before fetching data
           return _fetchLoginDetails(jsonDecode(AuthManager.tokens)["userID"]);
         }),
@@ -171,17 +173,7 @@ class _MyProfileState extends State<MyProfile> {
                                           //List Tile widget
                                           child: ListTile(
                                             onTap: () async {
-                                              CancelBookingApi
-                                                  cancelBookingApi =
-                                                  CancelBookingApi(); //this object is for navigate to the cancelbooking page
-                                              http.Client client = http
-                                                  .Client(); //this object is for compelteness of the method
-                                              await cancelBookingApi
-                                                  .cancelBooking(
-                                                      context,
-                                                      bookingDetails[index]
-                                                          ["ReferenceNo"],
-                                                      client);
+                                              _goToCancelPage(index);
                                             },
                                             title: Column(
                                               mainAxisAlignment:
@@ -324,5 +316,46 @@ class _MyProfileState extends State<MyProfile> {
         List<Map<String, dynamic>>.from(json.decode(response.body));
 
     bookingDetails = dataList;
+  }
+
+
+  //this method navigate user when click a booking tile to the Cancel booking page
+  void _goToCancelPage(int index) async {
+    CancelBookingApi cancelBookingApi =
+        CancelBookingApi(); //this object is for navigate to the cancelbooking page
+    http.Client client =
+        http.Client(); //this object is for testing of the method
+    //1 second delay for fetching data
+    await Future.delayed(const Duration(seconds: 1));
+
+    final Map<String, dynamic>
+        // ignore: use_build_context_synchronously
+        result = await cancelBookingApi.cancelBooking(
+            context, bookingDetails[index]["ReferenceNo"], client);
+
+    // ignore: use_build_context_synchronously
+    if (result['statusCode'] == 200) {
+      Map<String, dynamic> resultMap =
+          json.decode(result['body']); //convert result strin g in to a Map
+      print(resultMap);
+
+      Get.to(CancelBooking(resultMap: resultMap));
+
+      // return errormessage;
+      // ignore: use_build_context_synchronously
+    } else {
+      //map to access the ticket details in another classes
+      Map<String, dynamic> errormessage =
+          json.decode(result['body']); //convert result string in to a Map
+
+      // ignore: use_build_context_synchronously
+      QuickAlert.show(
+        context: context,
+        type: QuickAlertType.error,
+        title: 'Oops..',
+        text: errormessage["error"],
+      );
+      //throw Exception('Failed to search cancel'); // Update the error message
+    }
   }
 }

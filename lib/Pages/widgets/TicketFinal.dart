@@ -104,7 +104,7 @@ class FInalTicket extends StatelessWidget {
 
   _scree() async {
     if (await Permission.manageExternalStorage.request().isGranted) {
-      const customDirectoryPath = '/storage/emulated/0/Train';
+      const customDirectoryPath = '/storage/emulated/0/Download/Train';
       final customDirectory = Directory(customDirectoryPath);
 
       // Create the custom directory if it doesn't exist

@@ -173,7 +173,7 @@ class _SeeQrState extends State<SeeQr> {
                           setState(() {
                           })
                         });
-                    const customDirectoryPath = '/storage/emulated/0/Train';
+                    const customDirectoryPath = '/storage/emulated/0/Download/Train';
                     final customDirectory = Directory(customDirectoryPath);
 
                     // Create the custom directory if it doesn't exist
@@ -199,7 +199,7 @@ class _SeeQrState extends State<SeeQr> {
                     QuickAlert.show(
                         context: context,
                         type: QuickAlertType.success,
-                        text: "you can find the qr code in Train folder which has newly created.",
+                        text: "you can find the qr code in Train folder which has newly created in Download folder.",
                         onConfirmBtnTap: () {
                           Navigator.pop(context);
                           Navigator.pop(context);
