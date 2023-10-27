@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 
 import '../procedure/Home.dart';
 
-
 class CustomAppBar extends StatefulWidget {
   final List<Widget> page;
   final List<String> name;
@@ -29,9 +28,8 @@ class _CustomAppBarState extends State<CustomAppBar> {
               child: Container(
                 height: 60,
                 width: 400,
-                decoration: BoxDecoration(
-             
-                    borderRadius: BorderRadius.circular(20)),
+                decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(20)),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: Row(
@@ -41,6 +39,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                         return Padding(
                           padding: const EdgeInsets.only(left: 10),
                           child: InkWell(
+                           
                             onTap: () {
                               Scaffold.of(context)
                                   .openDrawer(); // Open the custom drawer
@@ -60,24 +59,27 @@ class _CustomAppBarState extends State<CustomAppBar> {
                               child: Padding(
                                 padding: const EdgeInsets.only(left: 15.0),
                                 child: InkWell(
+                                  key: Key(widget.name[i]+"btn"),
                                   onTap: () {
                                     if (widget.page[i] == 'Home') {
                                       Get.offAll(HomePage());
-                                    }else{
-                                        Get.to(widget.page[i]);
+                                    } else {
+                                      Get.to(widget.page[i]);
                                     }
-                                    
                                   },
-                                  child: widget.name[i] == 'Home' ? const Icon(
-                                    Icons.home,
-                                    size: 30,
-                                    color: Color.fromARGB(255, 255, 255, 255),
-                                  ):
-                                  Text(
-                                    widget.name[i],
-                                    style: const TextStyle(
-                                        fontSize: 20, color: Colors.white),
-                                  ),
+                                  child: widget.name[i] == 'Home'
+                                      ? const Icon(
+                                          Icons.home,
+                                          size: 30,
+                                          color: Color.fromARGB(
+                                              255, 255, 255, 255),
+                                        )
+                                      : Text(
+                                          widget.name[i],
+                                          style: const TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.white),
+                                        ),
                                 ),
                               ),
                             ),

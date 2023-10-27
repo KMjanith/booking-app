@@ -73,6 +73,7 @@ class FirstPage extends StatelessWidget {
                   ),
                   //From input
                   InputFieldDropDown(
+                    key: Key("fromInput"),
                     icon: const Icon(Icons.arrow_forward),
                     controller: _fromControler,
                     labelText: "From",
@@ -84,6 +85,7 @@ class FirstPage extends StatelessWidget {
 
                   //To input
                   InputFieldDropDown(
+                    key: Key("toInput"),
                     icon: const Icon(Icons.arrow_back),
                     controller: _toControler,
                     labelText: "To",
@@ -95,6 +97,7 @@ class FirstPage extends StatelessWidget {
 
                   //date input
                   DateInput(
+                      keys: Key("dateInput"),
                       birthDateController: _DateController,
                       selectedDate: _selectedDate),
 
@@ -104,8 +107,8 @@ class FirstPage extends StatelessWidget {
 
                   //passenger count input
                   NormalInput(
-                    key: Key("passenger"),
-                    keyboardType: TextInputType.number,
+                      key: Key("passengerInput"),
+                      keyboardType: TextInputType.number,
                       icon: const Icon(Icons.person),
                       controller: _PasegerCount,
                       labelText: "pasengers",
@@ -123,6 +126,7 @@ class FirstPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: TextButton(
+                        key: Key("available_trains"),
                         child: const Text("Available Trains",
                             style: TextStyle(
                                 fontSize: 20,
@@ -140,17 +144,17 @@ class FirstPage extends StatelessWidget {
                               text: 'Sorry,some fields are empty',
                             );
                             return;
-                          }else if(_fromControler.text == _toControler.text){
+                          } else if (_fromControler.text == _toControler.text) {
                             QuickAlert.show(
                               context: context,
                               type: QuickAlertType.error,
                               title: 'Oops...',
-                              text: 'both stations are same.choose deferent stations',
+                              text:
+                                  'both stations are same.choose deferent stations',
                             );
-                               return;
+                            return;
                           }
                           //print(_DateController.text);
-                          
 
                           Get.to(TrainDisplay(
                             Actual_date: _DateController.text,
@@ -179,8 +183,8 @@ class FirstPage extends StatelessWidget {
             ),
         ],
       ),
-       drawer: const CustomDrawer(), //side panel
-       bottomNavigationBar: Bottom_NavigationBar(),
+      drawer: const CustomDrawer(), //side panel
+      bottomNavigationBar: Bottom_NavigationBar(),
     );
   }
 

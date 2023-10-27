@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 class DateInput extends StatefulWidget {
   DateTime? selectedDate;
   final TextEditingController birthDateController;
-  DateInput({super.key, required this.selectedDate, required this.birthDateController});
+  final Key keys;
+  DateInput({super.key, required this.selectedDate, required this.birthDateController,required this.keys});
 
   @override
   State<DateInput> createState() => _DateInputState();
@@ -38,7 +39,7 @@ class _DateInputState extends State<DateInput> {
             color: Colors.white.withOpacity(0.5),
             borderRadius: BorderRadius.circular(10)),
         child: TextField(
-          
+          key: widget.keys,
           controller: widget.birthDateController,
           decoration: InputDecoration(
             icon: Icon(Icons.date_range),

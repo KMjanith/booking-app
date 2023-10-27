@@ -88,6 +88,7 @@ class HomePage extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: TextButton(
+                      key: const Key("getStarted"),
                       onPressed: () {
                         //Get.to(FirstPage());
                         Navigator.push(

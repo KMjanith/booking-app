@@ -180,7 +180,7 @@ class LoginPage extends StatelessWidget {
           ),
           CustomAppBar(
             page: [HomePage(), SignUpPage()],
-            name: const ["Home", "Sign up"],
+            name: const ["Home", "Signup"],
           ),
         ],
       ),
