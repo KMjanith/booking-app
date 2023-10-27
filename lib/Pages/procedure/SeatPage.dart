@@ -30,8 +30,6 @@ class SeatView extends StatelessWidget {
       required this.maxSeatCount,
       required this.Price});
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +39,7 @@ class SeatView extends StatelessWidget {
       //appBar: AppBar(title: Text('Seat View'),),
       body: Stack(
         children: [
-           const clipPath(), //Custom clipPath
+          const clipPath(), //Custom clipPath
           Positioned(
             top: 120,
             right: 30,
@@ -50,6 +48,7 @@ class SeatView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                //this row is showing the seat status details
                 Row(children: [
                   Container(
                     height: 15,
@@ -103,6 +102,7 @@ class SeatView extends StatelessWidget {
             height: 20,
           ),
 
+          //this row is showing the train side
           const Positioned(
             top: 170,
             right: 50,
@@ -131,6 +131,8 @@ class SeatView extends StatelessWidget {
                     top: 200, right: 20, left: 20, bottom: 20),
                 child: SizedBox(
                   height: 500,
+
+                  //ColoredGridView is the widget which is showing the seat plan
                   child: ColoredGridView(
                     maxSeatCount: maxSeatCount,
                     gridData: seet_view,
@@ -153,7 +155,7 @@ class SeatView extends StatelessWidget {
                     color: Color.fromARGB(255, 0, 103, 172),
                     borderRadius: BorderRadius.all(Radius.circular(10))),
                 child: TextButton(
-                  onPressed: SetSeats,
+                  onPressed: SetSeats,  //calling setSeats method when tapped
                   child: const Text('Book Seat ',
                       style: TextStyle(color: Colors.white, fontSize: 20)),
                 ),
@@ -166,7 +168,6 @@ class SeatView extends StatelessWidget {
           ),
         ],
       ),
-      
     );
   }
 
@@ -189,6 +190,7 @@ class SeatView extends StatelessWidget {
     print(seet_view);
     var totalPrice = Price * selectedtotalSeats; //total ticketPrice
 
+    //calling the CustomerDetails page with all details with selected seats
     Get.to(CustomerDetails(
         updatedSeatView: seet_view,
         Seatnumbers: selectedSeatsNo,

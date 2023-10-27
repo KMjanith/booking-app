@@ -15,6 +15,7 @@ import '../Auth/login.dart';
 import '../widgets/popular.dart';
 import 'take_inputs_page.dart';
 
+//home page
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -48,6 +49,7 @@ class HomePage extends StatelessWidget {
                   ),
 
                   //page content
+                  //paragraph after the topic
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20),
                     child: Text(
@@ -66,6 +68,7 @@ class HomePage extends StatelessWidget {
             ),
 
             //Get Started button
+            //by clicking this button you will redirect to the take input page
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -90,7 +93,7 @@ class HomePage extends StatelessWidget {
                     child: TextButton(
                       key: const Key("getStarted"),
                       onPressed: () {
-                        //Get.to(FirstPage());
+                        //redirect to the take input page
                         Navigator.push(
                             context,
                             CupertinoPageRoute(
@@ -107,7 +110,10 @@ class HomePage extends StatelessWidget {
                                 color: Color.fromARGB(255, 3, 3, 3)),
                           ),
                           Spacer(),
-                          Image.asset("Assets/giphy.gif",width: 36.5,),
+                          Image.asset(
+                            "Assets/giphy.gif",
+                            width: 36.5,
+                          ), //gif
                         ],
                       ),
                     ),
@@ -125,7 +131,6 @@ class HomePage extends StatelessWidget {
               width: double.infinity,
 
               // Use the PopularTile widget with automatic scrolling
-
               child: Column(children: [
                 Center(
                     child: Padding(
@@ -165,9 +170,11 @@ class HomePage extends StatelessWidget {
               height: 10,
             ),
 
+            //booking policy button
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
+                //calling the custom policy widget
                 PolicyWidget(
                     color: Colors.blue,
                     context: context,
@@ -192,6 +199,8 @@ class HomePage extends StatelessWidget {
                               SizedBox(
                                 height: 10,
                               ),
+
+                              //booking procedure
                               Text(
                                   "1.first hit the" + "Get Started" + "button"),
                               Text(
@@ -218,6 +227,7 @@ class HomePage extends StatelessWidget {
                     )),
 
                 //cancel and refund policy
+                //calling the policy widget
                 PolicyWidget(
                   color: Colors.red,
                   context: context,
@@ -242,6 +252,8 @@ class HomePage extends StatelessWidget {
                             SizedBox(
                               height: 10,
                             ),
+
+                            //cancel booking procedure
                             Text(
                                 "1.Go to the side panel and hit the cancel booking button"),
                             Text("2.then enter your ticket's Ref.no"),
@@ -262,6 +274,8 @@ class HomePage extends StatelessWidget {
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 25),
                       ),
+
+                      //refund policy procedure
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
@@ -325,6 +339,7 @@ class HomePage extends StatelessWidget {
             const SizedBox(
               height: 28,
             ),
+
             //About Us
             const Info(content: "", title: "About us"),
             const Padding(
@@ -370,7 +385,6 @@ class HomePage extends StatelessWidget {
               ),
             ),
 
-
             //Go to web site button
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
@@ -387,7 +401,10 @@ class HomePage extends StatelessWidget {
                     child: const Center(
                       child: Text(
                         "visit our Website",
-                        style: TextStyle(color: Colors.white, fontSize: 20,fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
                       ),
                     )),
               ),
@@ -410,6 +427,8 @@ class HomePage extends StatelessWidget {
               const SizedBox(
                 width: 15,
               ),
+
+              //for instragram button
               InkWell(
                 onTap: () {
                   goYouTube();
@@ -419,6 +438,7 @@ class HomePage extends StatelessWidget {
                   height: 28,
                 ),
               ),
+
               IconButton(
                   onPressed: () {},
                   icon: const Icon(
@@ -431,10 +451,13 @@ class HomePage extends StatelessWidget {
               height: 10,
             )
           ]),
+
+          //making the CutumAppBar widget elements
+          //it is taking two lists
           if (!AuthManager.isLoggedIn)
             CustomAppBar(
-              page: [LoginPage(), SignUpPage()],
-              name: const ["Login", "Signup"],
+              page: [LoginPage(), SignUpPage()], //list of pages
+              name: const ["Login", "Signup"], //list of names
             ),
           if (AuthManager.isLoggedIn)
             CustomAppBar(
@@ -447,7 +470,8 @@ class HomePage extends StatelessWidget {
     );
   }
 
- goWebSite() async {
+//method to go to the web site
+  goWebSite() async {
     final Uri uri = Uri.parse("https://stage-pilot.onrender.com/");
     try {
       if (!await launchUrl(uri)) {
@@ -456,6 +480,7 @@ class HomePage extends StatelessWidget {
     } catch (e) {}
   }
 
+  //method to go to the google map
   mapUrl() async {
     final Uri uri = Uri.parse("https://www.google.com/maps");
     try {
@@ -465,6 +490,7 @@ class HomePage extends StatelessWidget {
     } catch (e) {}
   }
 
+//method to go to the youtube
   goYouTube() async {
     final Uri uri = Uri.parse("https://youtu.be/LXLh_lEwdB4");
     try {

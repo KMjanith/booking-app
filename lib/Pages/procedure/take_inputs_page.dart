@@ -29,10 +29,6 @@ class FirstPage extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          /*Container(
-            decoration:
-                const BoxDecoration(color: Color.fromARGB(255, 213, 230, 245)),
-          ),*/
           const clipPath(),
           Positioned(
             child: Padding(
@@ -42,6 +38,8 @@ class FirstPage extends StatelessWidget {
                   const SizedBox(
                     height: 60,
                   ),
+
+                  //page title
                   const Center(
                     child: Padding(
                       padding: EdgeInsets.all(10.0),
@@ -71,6 +69,7 @@ class FirstPage extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
+                  //inputs filed has customly made in widgets folder
                   //From input
                   InputFieldDropDown(
                     key: Key("fromInput"),
@@ -117,6 +116,8 @@ class FirstPage extends StatelessWidget {
                   const SizedBox(
                     height: 28,
                   ),
+
+                  //button go to the next page
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 6.0),
                     child: Container(
@@ -133,6 +134,7 @@ class FirstPage extends StatelessWidget {
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold)),
                         onPressed: () {
+                          //checking the inputs are empty or not
                           if (_fromControler.text.isEmpty ||
                               _toControler.text.isEmpty ||
                               _DateController.text.isEmpty ||
@@ -145,6 +147,7 @@ class FirstPage extends StatelessWidget {
                             );
                             return;
                           } else if (_fromControler.text == _toControler.text) {
+                            //checking the both stations are same or not
                             QuickAlert.show(
                               context: context,
                               type: QuickAlertType.error,
@@ -156,6 +159,8 @@ class FirstPage extends StatelessWidget {
                           }
                           //print(_DateController.text);
 
+                          //go to the next page
+                          //calling the TrainDisplay page with all details
                           Get.to(TrainDisplay(
                             Actual_date: _DateController.text,
                             passengerCount: int.parse(_PasegerCount.text),
@@ -171,6 +176,8 @@ class FirstPage extends StatelessWidget {
               ),
             ),
           ),
+
+          //making the appBar
           if (!AuthManager.isLoggedIn)
             CustomAppBar(
               page: [LoginPage(), SignUpPage()],

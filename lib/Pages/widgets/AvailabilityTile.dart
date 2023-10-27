@@ -24,6 +24,7 @@ class AvailabilityTile extends StatelessWidget {
   static ObjectId? TrainID;
   static int? ClassType;
 
+//this class is responsible for the widget that shows the available trains
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -68,9 +69,9 @@ class AvailabilityTile extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              textStyle("${data.from} -"),
+                              textStyle("${data.from} -"),  //from time 
                               const SizedBox(width: 12),
-                              textStyle(data.to),
+                              textStyle(data.to),  //to time
                             ],
                           ),
                         ],
@@ -120,7 +121,7 @@ class AvailabilityTile extends StatelessWidget {
               ),
               const Text(
                 "select class",
-                style: TextStyle(color: Colors.red,fontSize: 18),
+                style: TextStyle(color: Colors.red, fontSize: 18),
               ),
               const SizedBox(
                 height: 5,
@@ -268,6 +269,7 @@ class AvailabilityTile extends StatelessWidget {
     );
   }
 
+  //go to the seat view function with selected class
   _goToSeatView(int index) {
     List<int> listWithZeros = data.sheet_view[
         index]; //duplicate list to make changes of the seat selection

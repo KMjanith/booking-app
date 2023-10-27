@@ -31,10 +31,10 @@ class TrainDisplay extends StatelessWidget {
     SerachTrain searchTrain = SerachTrain();
 
     return Scaffold(
+      //calling custom bottom Navigation bar
       bottomNavigationBar: Bottom_NavigationBar(),
       body: Stack(children: [
         const clipPath(),
-       
         Positioned(
           top: 100,
           left: 0,
@@ -43,7 +43,8 @@ class TrainDisplay extends StatelessWidget {
           child: SizedBox(
             height: 700,
             child: FutureBuilder(
-             
+              //calling the searchTrain function from the search_api.dart
+              //this is call to the backend
               future: searchTrain.getTrains(
                   from, to, Actual_date, passengerCount, Actual_date),
               builder: (context, AsyncSnapshot snapshot) {
@@ -63,6 +64,7 @@ class TrainDisplay extends StatelessWidget {
                     //print(priceList);
                     //print(snapshot.data);
 
+                    //building the list of Trains which has granted from the back end
                     return ListView.builder(
                       itemCount: totalData,
                       itemBuilder: (context, index) {
@@ -73,6 +75,8 @@ class TrainDisplay extends StatelessWidget {
                                     fontSize: 30,
                                     fontWeight: FontWeight.bold,
                                     color: Color.fromARGB(255, 92, 7, 47))),
+
+                            //calling Available train widget one by one to show the trains
                             AvailabilityTile(
                               Actual_date: Actual_date, //booking date
                               from: from,
@@ -86,6 +90,7 @@ class TrainDisplay extends StatelessWidget {
                       },
                     );
                   } else {
+                    //Alert dialog to show when there are no trains available
                     return AlertDialog(
                         backgroundColor: Color.fromARGB(255, 0, 5, 68),
                         title: const Text(
@@ -111,11 +116,14 @@ class TrainDisplay extends StatelessWidget {
             ),
           ),
         ),
+        //making the AppBar
         CustomAppBar(
           page: [FirstPage(), HomePage()],
           name: const ["change root", "Home"],
         ),
       ]),
+
+      //sidebar
       drawer: const CustomDrawer(),
     );
   }

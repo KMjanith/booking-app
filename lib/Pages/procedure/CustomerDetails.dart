@@ -44,6 +44,7 @@ class CustomerDetails extends StatelessWidget {
   TextEditingController NIC = TextEditingController();
   TextEditingController mobile = TextEditingController();
 
+//this class is to take the customer details. this will pass to the payment page
   @override
   Widget build(BuildContext context) {
     //print(jsonDecode(AuthManager.token)["userID"]);
@@ -76,7 +77,7 @@ class CustomerDetails extends StatelessWidget {
                     padding: EdgeInsets.only(top: 15.0),
                     child: Center(
                       child: Text(
-                        "Enter Your Details",
+                        "Enter Details",
                         style: TextStyle(
                             fontSize: 30, fontWeight: FontWeight.bold),
                       ),
@@ -86,7 +87,7 @@ class CustomerDetails extends StatelessWidget {
                   //   padding: EdgeInsets.only(top: 15.0),
                   //   child: Center(
                   //     child: Text(
-                  //       "Enter a valid email. we will send you a OTP number to validate your email.that email will use for future communication",
+                  //       "Enter a valid email. we will send you a OTP number to validate email.that email will use for future communication",
                   //       textAlign: TextAlign.center,
                   //       style: TextStyle(fontSize: 18),
                   //     ),
@@ -97,6 +98,7 @@ class CustomerDetails extends StatelessWidget {
                     height: 10,
                   ),
 
+                  //this will show the total price according to the selected seat count
                   Center(
                       child: Text(
                     "Total Price: LKR" + price.toString(),
@@ -104,10 +106,9 @@ class CustomerDetails extends StatelessWidget {
                   )),
                   const SizedBox(height: 10),
 
-                  //fsrt name
-
+                  //fisrt name
                   NormalInput(
-                    key: Key("firstNme"),
+                      key: Key("firstNme"),
                       keyboardType: TextInputType.text,
                       icon: const Icon(Icons.person_2_rounded),
                       controller: firstName,
@@ -117,43 +118,43 @@ class CustomerDetails extends StatelessWidget {
                   const SizedBox(height: 10),
 
                   //lastname
-
                   NormalInput(
-                    key: Key("lsstNAme"),
+                      key: Key("lsstNAme"),
                       keyboardType: TextInputType.text,
                       icon: const Icon(Icons.person_2_rounded),
                       controller: lastName,
                       labelText: 'Last Name',
                       obscureText: false),
                   const SizedBox(height: 10),
-                  //email
 
+                  //email
                   NormalInput(
-                    key: Key("Email"),
+                      key: Key("Email"),
                       keyboardType: TextInputType.emailAddress,
                       icon: const Icon(Icons.email_rounded),
-                      controller: email, // Replace with your controller
+                      controller: email, // Replace with controller
                       labelText: 'Email',
                       obscureText: false),
 
                   const SizedBox(height: 10),
-                  //NIC
 
+                  //NIC
                   NormalInput(
-                    key: Key("NIC"),
+                      key: Key("NIC"),
                       keyboardType: TextInputType.text,
                       icon: const Icon(Icons.perm_identity),
-                      controller: NIC, // Replace with your controller
+                      controller: NIC, // Replace with controller
                       labelText: 'NIC',
                       obscureText: false),
 
                   const SizedBox(height: 10),
+
                   //Mobile number
                   NormalInput(
-                    key: Key("mobile"),
+                      key: Key("mobile"),
                       keyboardType: TextInputType.number,
                       icon: const Icon(Icons.mobile_friendly_rounded),
-                      controller: mobile, // Replace with your controller
+                      controller: mobile, // Replace with controller
                       labelText: 'Mobile',
                       obscureText: false),
 
@@ -175,6 +176,7 @@ class CustomerDetails extends StatelessWidget {
                                   BorderRadius.all(Radius.circular(10))),
                           child: TextButton(
                             onPressed: () {
+                              //checking the seat count
                               if (passengerCount == 0) {
                                 QuickAlert.show(
                                   context: context,
@@ -187,7 +189,6 @@ class CustomerDetails extends StatelessWidget {
                                 );
                                 return;
                               }
-                              print(firstName.text);
 
                               //field fill checking
                               if (firstName.text.isEmpty ||
@@ -216,10 +217,8 @@ class CustomerDetails extends StatelessWidget {
                                 Orign: train_details.from,
                                 Destination: train_details.to,
                                 timeFromTO: [
-                                  train_details.arrivalTimes[0].toString() +
-                                      "AM",
-                                  train_details.departureTimes[0].toString() +
-                                      "AM"
+                                  "${train_details.arrivalTimes[0]}AM",
+                                  "${train_details.departureTimes[0]}AM"
                                 ],
                                 Date: date,
                                 firstName: firstName.text,
