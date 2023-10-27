@@ -4,11 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pdf/pdf.dart';
 import 'package:quickalert/quickalert.dart';
+import 'package:screenshot/screenshot.dart';
 import '../../servises/AuthManager.dart';
 import '../Auth/SignUp.dart';
 import '../widgets/AppBarCustom.dart';
 import '../widgets/TicketFinal.dart';
+import '../widgets/bottomNavigator.dart';
 import '../widgets/clipPath.dart';
+import '../widgets/drawer.dart';
 import 'Home.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:permission_handler/permission_handler.dart';
@@ -20,13 +23,18 @@ class TicketSummary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //Create an instance of ScreenshotController
+    ScreenshotController screenshotController = ScreenshotController();
+
     return Scaffold(
       body: Stack(children: [
-        const clipPath(),
+       const clipPath(),
         ListView(
           children: [
-            //show full ticket which can be downloaded in to the Train folder in the mobile
-            finalTicket,
+            
+          //show full ticket which can be downloaded in to the Train folder in the mobile
+             finalTicket,
+              
 
             //odf download button
             Padding(
@@ -47,7 +55,170 @@ class TicketSummary extends StatelessWidget {
                               child: pw.Column(children: [
                                 pw.Container(
                                   child: pw.Column(
-                                    children: [],
+                                    children: [
+                                      pw.Text(
+                                        "Train Ticket",
+                                        style: pw.TextStyle(
+                                            fontSize: 35,
+                                            fontWeight: pw.FontWeight.bold),
+                                      ),
+                                      pw.SizedBox(
+                                        height: 20,
+                                      ),
+                                      pw.Center(
+                                        child: pw.Text(
+                                          "Reference Number: ${finalTicket.RefNumber}",
+                                          style: pw.TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: pw.FontWeight.bold),
+                                        ),
+                                      ),
+                                      pw.SizedBox(
+                                        height: 10,
+                                      ),
+                                      pw.Text(
+                                        "Train No: ${finalTicket.ticket.trainNo}",
+                                        style: pw.TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: pw.FontWeight.bold),
+                                      ),
+                                      pw.SizedBox(
+                                        height: 10,
+                                      ),
+                                      pw.Text(
+                                        "Train Name: ${finalTicket.ticket.trainName}",
+                                        style: pw.TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: pw.FontWeight.bold),
+                                      ),
+                                      pw.SizedBox(
+                                        height: 10,
+                                      ),
+                                      pw.Text(
+                                        "Origin: ${finalTicket.ticket.Orign}",
+                                        style: pw.TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: pw.FontWeight.bold),
+                                      ),
+                                      pw.SizedBox(
+                                        height: 10,
+                                      ),
+                                      pw.Text(
+                                        "Destination: ${finalTicket.ticket.Destination}",
+                                        style: pw.TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: pw.FontWeight.bold),
+                                      ),
+                                      pw.SizedBox(
+                                        height: 10,
+                                      ),
+                                      pw.Text(
+                                        "Time from -> to: ${finalTicket.ticket.timeFromTO[0]} -> ${finalTicket.ticket.timeFromTO[1]}",
+                                        style: pw.TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: pw.FontWeight.bold),
+                                      ),
+                                      pw.SizedBox(
+                                        height: 10,
+                                      ),
+                                      pw.Text(
+                                        "Date: ${finalTicket.ticket.Date}",
+                                        style: pw.TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: pw.FontWeight.bold),
+                                      ),
+                                      pw.SizedBox(
+                                        height: 10,
+                                      ),
+                                      pw.Text(
+                                        "FirstName: ${finalTicket.ticket.firstName}",
+                                        style: pw.TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: pw.FontWeight.bold),
+                                      ),
+                                      pw.SizedBox(
+                                        height: 10,
+                                      ),
+                                      pw.Text(
+                                        "LastName: ${finalTicket.ticket.lastName}",
+                                        style: pw.TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: pw.FontWeight.bold),
+                                      ),
+                                      pw.SizedBox(
+                                        height: 10,
+                                      ),
+                                      pw.Text(
+                                        "mobile: ${finalTicket.ticket.mobileNo}",
+                                        style: pw.TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: pw.FontWeight.bold),
+                                      ),
+                                      pw.SizedBox(
+                                        height: 10,
+                                      ),
+                                      pw.Text(
+                                        "Passenger count: ${finalTicket.ticket.PassengerCount.toString()}",
+                                        style: pw.TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: pw.FontWeight.bold),
+                                      ),
+                                      pw.SizedBox(
+                                        height: 10,
+                                      ),
+                                      pw.Column(children: [
+                                        pw.Text(
+                                          "Class Type: ${finalTicket.ticket.classType}",
+                                          style: pw.TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: pw.FontWeight.bold),
+                                        )
+                                      ]),
+                                      pw.SizedBox(
+                                        height: 10,
+                                      ),
+                                      pw.Text(
+                                        "Total Price: ${finalTicket.ticket.Price.toString()}",
+                                        style: pw.TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: pw.FontWeight.bold),
+                                      ),
+                                      pw.SizedBox(
+                                        height: 10,
+                                      ),
+                                      pw.Text(
+                                        "Seat Numbers: ${finalTicket.ticket.SeatNumbers.join(', ')}",
+                                        style: pw.TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: pw.FontWeight.bold),
+                                      ),
+                                      pw.SizedBox(
+                                        height: 10,
+                                      ),
+                                      pw.Text(
+                                        "email: ${finalTicket.ticket.email}",
+                                        style: pw.TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: pw.FontWeight.bold),
+                                      ),
+                                      pw.SizedBox(
+                                        height: 10,
+                                      ),
+                                      pw.Text(
+                                        "NIC: ${finalTicket.ticket.NIC}",
+                                        style: pw.TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: pw.FontWeight.bold),
+                                      ),
+                                      pw.SizedBox(height: 30),
+                                      pw.Text(
+                                          "go to the see Qr code tab in the side bar and \nenter the reference number to see the QR code of your ticket",
+                                          textAlign: pw.TextAlign.center,
+                                          style: pw.TextStyle(
+                                              fontSize: 20,
+                                              color: PdfColors.red,
+                                              fontWeight: pw.FontWeight.bold))
+                                    ],
                                   ),
                                 ),
                               ]),
@@ -60,7 +231,7 @@ class TicketSummary extends StatelessWidget {
                           .isGranted) {
                         try {
                           const customDirectoryPath =
-                              '/storage/emulated/0/Train';
+                              '/storage/emulated/0/Download/Train';
                           final customDirectory =
                               Directory(customDirectoryPath);
 
@@ -72,11 +243,23 @@ class TicketSummary extends StatelessWidget {
                           }
 
                           const filePath =
-                              '/storage/emulated/0/Train/my_custom_pdf.pdf';
+                              '/storage/emulated/0/Download/Train/my_custom_pdf.pdf';
 
                           // Save the PDF to the custom path
                           final file = File(filePath);
                           await file.writeAsBytes(await pdf.save());
+
+                          // String fileName =
+                          //     DateTime.now().microsecondsSinceEpoch.toString();
+                          // String path = '$customDirectoryPath/$fileName';
+
+                          // screenshotController
+                          //     .captureAndSave(
+                          //       path,
+                          //       pixelRatio: 2.0,
+                          //       delay: const Duration(milliseconds: 10),
+                          //     )
+                          //     .then((value) => print('Saved'));
 
                           //print('PDF saved to $filePath');
                           // ignore: use_build_context_synchronously
@@ -84,17 +267,18 @@ class TicketSummary extends StatelessWidget {
                               context: context,
                               type: QuickAlertType.success,
                               title: "saved",
-                              text: 'PDF saved to $filePath. Also see QR by entering reference number in sideBar.',
-                              onConfirmBtnTap: (){
-                                Get.off(HomePage());
-                              }
-                              );
+                              text:
+                                  'PDF saved to a new folder named Train in Download folder along with the QR_code.png.',
+                              onConfirmBtnTap: () {
+                                Get.offAll(HomePage());
+                              });
                         } catch (e) {
                           //print('Error: $e');
-                           // ignore: use_build_context_synchronously
-                           QuickAlert.show(
+                          print(e);
+                          // ignore: use_build_context_synchronously
+                          QuickAlert.show(
                               context: context,
-                              type: QuickAlertType.success,
+                              type: QuickAlertType.error,
                               title: "saved",
                               text: 'Error: $e');
                         }
@@ -132,6 +316,8 @@ class TicketSummary extends StatelessWidget {
             name: const ["Home"],
           ),
       ]),
+      drawer: const CustomDrawer(), //side panel
+      bottomNavigationBar: Bottom_NavigationBar(),
     );
   }
 }

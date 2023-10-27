@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quickalert/quickalert.dart';
 import '../../servises/login_api.dart';
+import '../widgets/bottomNavigator.dart';
 import '../widgets/clipPath.dart';
+import '../widgets/drawer.dart';
 import '../widgets/input_fields/OTPInBox.dart';
 import 'dart:async';
 
@@ -21,7 +23,6 @@ class OTPdialogBox extends StatefulWidget {
   });
 
   final OTPInput = TextEditingController();
-  
 
   @override
   State<OTPdialogBox> createState() => _OTPdialogBoxState();
@@ -96,7 +97,7 @@ class _OTPdialogBoxState extends State<OTPdialogBox> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        extendBodyBehindAppBar: true,
+      bottomNavigationBar: Bottom_NavigationBar(),
         body: Stack(
           children: [
             const clipPath(),
@@ -153,7 +154,7 @@ class _OTPdialogBoxState extends State<OTPdialogBox> {
 
                                   //user verified
                                   ApiServiceLogin.verified = true;
-                                  
+
                                   //print(verified);
                                   /*QuickAlert.show(
                                     context: context,
@@ -215,6 +216,8 @@ class _OTPdialogBoxState extends State<OTPdialogBox> {
               ),
             ),
           ],
-        ));
+        ),
+        drawer: const CustomDrawer(), //side panel
+        );
   }
 }

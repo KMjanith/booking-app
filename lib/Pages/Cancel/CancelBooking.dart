@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import '../../servises/login_api.dart';
 import '../widgets/AppBarCustom.dart';
+import '../widgets/bottomNavigator.dart';
 import '../widgets/clipPath.dart';
+import '../widgets/drawer.dart';
 import '../widgets/ticketAttri.dart';
 import '../procedure/Home.dart';
 import 'CancelConfirm.dart';
@@ -17,6 +19,7 @@ class CancelBooking extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: Bottom_NavigationBar(),
       body: Stack(
         children: [
           const clipPath(),
@@ -116,7 +119,7 @@ class CancelBooking extends StatelessWidget {
                               value: "LKR.${resultMap["booking"]["price"]}"),
                         ]),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Container(
@@ -140,7 +143,7 @@ class CancelBooking extends StatelessWidget {
                               value: resultMap["daysRemaining"].toString()),
                           TicketAttribute(
                               attribute: "Refund amount",
-                              value: resultMap["refund"].toString()),
+                              value: "LKR.${resultMap["refund"]}"),
 
                           //check refund button
                           Padding(
@@ -170,6 +173,7 @@ class CancelBooking extends StatelessWidget {
           CustomAppBar(page: [HomePage()], name: ["Home"]),
         ],
       ),
+      drawer: const CustomDrawer(), //side panel
     );
   }
 

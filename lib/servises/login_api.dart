@@ -6,66 +6,70 @@ import 'package:quickalert/quickalert.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
 import 'dart:convert';
 import '../Pages/Auth/login.dart';
-import '../Pages/procedure/Home.dart';
 import 'AuthManager.dart';
-import 'DatabaseHandeling/constant.dart';
+import 'constant.dart';
 import '../Pages/Auth/OTPdialog.dart';
 
 class ApiServiceLogin {
   //late PaswordReset paswordReset;
   late LoginPage createdOTP;
-  static const String baseUrl = 'http://$baseUrl_1:4000/login';
+  static const String baseUrl =
+      '$baseUrl_1/login';
 
-  Future<void> login(BuildContext context, String email, String password,
+  Future<int> login(BuildContext context, String email, String password,
       http.Client client) async {
-    final Map<String, dynamic> requestBody = {
-      'email': email,
-      'password': password,
-    };
+  
+      final Map<String, dynamic> requestBody = {
+        'email': email,
+        'password': password,
+      };
 
-    final response = await http.post(
-      Uri.parse(baseUrl),
-      headers: {'Content-Type': 'application/json'},
-      body: jsonEncode(requestBody), // Encode the map as JSON
-    );
-
-    print(response.body);
-    dynamic token = jsonDecode(response.body);
-    print(token["userID"]);
-
-    AuthManager.token = response.body; //store the token
-    AuthManager.login(); //setting the logged in user true
-
-    if (response.statusCode == 200) {
-      // return LoginModel.fromJson(jsonDecode(response.body));
-
-      // ignore: use_build_context_synchronously
-      QuickAlert.show(
-        context: context,
-        type: QuickAlertType.success,
-        title: 'Great',
-        text: 'Succesfully logged in',
-        onConfirmBtnTap: () {
-          Get.offAll(HomePage());
-        },
+      final response = await http.post(
+        Uri.parse(baseUrl),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode(requestBody), // Encode the map as JSON
       );
-    } else {
-      // ignore: use_build_context_synchronously
-      //throw Exception('Failed to load album'); // Update the error message
-      // ignore: use_build_context_synchronously
-      QuickAlert.show(
-          context: context,
-          type: QuickAlertType.error,
-          title: 'Oops..',
-          text:
-              'Check username and pasword again or verify your email'); // Update the error message
-    }
 
-    //changes - login eke return type eka LoginModel kiyala set karala thiyenne
+      print(response.body);
+      dynamic token = jsonDecode(response.body);
+      print(token["userID"]);
+
+      AuthManager.tokens = response.body; //store the token
+      AuthManager.login(); //setting the logged in user true
+
+      return response.statusCode;
+      // if (response.statusCode == 200) {
+      //   // Dismiss the loading indicator
+      //   Navigator.of(context, rootNavigator: true).pop();
+
+      //   // ignore: use_build_context_synchronously
+      //   QuickAlert.show(
+      //     context: context,
+      //     type: QuickAlertType.success,
+      //     title: 'Great',
+      //     text: 'Successfully logged in',
+      //     onConfirmBtnTap: () {
+      //       Get.offAll(HomePage());
+      //     },
+      //   );
+      // } else {
+      //   // Dismiss the loading indicator
+      //   // ignore: use_build_context_synchronously
+      //   Navigator.of(context, rootNavigator: true).pop();
+
+      //   // ignore: use_build_context_synchronously
+      //   QuickAlert.show(
+      //       context: context,
+      //       type: QuickAlertType.error,
+      //       title: 'Oops..',
+      //       text: 'Check username and password again or verify your email');
+      // }
+    
   }
 
+
   //Endpoint to send OTP to the given email
-  static const String baseUrlforOTP = 'http://$baseUrl_1:4000/login/sendOTP';
+  static const String baseUrlforOTP = '$baseUrl_1/login/sendOTP';
   static bool verified = false;
 
   Future<void> Sendotp(BuildContext context, String email, Widget Page) async {
@@ -103,9 +107,5 @@ class ApiServiceLogin {
         OriginalOTP: otp,
       ));
     }
-
-    // ignore: use_build_context_synchronously
-
-    //show the OTPInput dialogBox
   }
 }

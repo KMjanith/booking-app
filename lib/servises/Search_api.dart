@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-//import 'package:mongo_dart/mongo_dart.dart';
-import 'DatabaseHandeling/constant.dart';
+import 'constant.dart';
+
 
 class SerachTrain {
-  static const String baseUrl = 'http://$baseUrl_1:4000/Search';
+  static const String baseUrl = '$baseUrl_1/Search';
 
   Future<List<Map<String, dynamic>>> getTrains(String from, String to,
       String date, int passengers, String returnDate) async {
@@ -13,7 +13,7 @@ class SerachTrain {
       'to': to,
       'date': date,
       'passengers': passengers,
-      "returnDate": returnDate
+      //"returnDate": returnDate
     };
 
     final response = await http.post(

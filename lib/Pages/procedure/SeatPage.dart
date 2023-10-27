@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import '../../Models/Trainmodel.dart';
 import '../widgets/AppBarCustom.dart';
 import '../widgets/Seatplan.dart';
+import '../widgets/bottomNavigator.dart';
+import '../widgets/clipPath.dart';
 import '../widgets/drawer.dart';
 import 'CustomerDetails.dart';
 import 'Home.dart';
@@ -11,7 +13,6 @@ import 'take_inputs_page.dart';
 
 class SeatView extends StatelessWidget {
   final TrainModel train_details;
-  //final ObjectId TraiId;
   final String className;
   final int seatCount;
   final List<int> seet_view;
@@ -26,21 +27,21 @@ class SeatView extends StatelessWidget {
       required this.className,
       required this.seatCount,
       required this.seet_view,
-      //required this.TraiId,
       required this.maxSeatCount,
       required this.Price});
 
-  //static List<int>? updatedSeatView;
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: Bottom_NavigationBar(),
       drawer: const CustomDrawer(), //side panel
       backgroundColor: Color.fromARGB(255, 0, 0, 0),
       //appBar: AppBar(title: Text('Seat View'),),
       body: Stack(
         children: [
-          
+           const clipPath(), //Custom clipPath
           Positioned(
             top: 120,
             right: 30,

@@ -7,11 +7,12 @@ import 'package:quickalert/quickalert.dart';
 import '../../Models/Ticket.dart';
 import '../../Models/Trainmodel.dart';
 import '../../servises/AuthManager.dart';
-import '../../servises/DatabaseHandeling/constant.dart';
+import '../../servises/constant.dart';
 import '../widgets/AppBarCustom.dart';
 import '../widgets/AvailabilityTile.dart';
 import '../widgets/Colors.dart';
 import '../widgets/CustomClipart..dart';
+import '../widgets/bottomNavigator.dart';
 import '../widgets/drawer.dart';
 import '../widgets/input_fields/normal_input.dart';
 import 'Home.dart';
@@ -47,7 +48,7 @@ class CustomerDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     //print(jsonDecode(AuthManager.token)["userID"]);
     if (AuthManager.isLoggedIn) {
-      loginDetails(jsonDecode(AuthManager.token)["userID"]);
+      loginDetails(jsonDecode(AuthManager.tokens)["userID"]);
     }
 
     return Scaffold(
@@ -81,20 +82,21 @@ class CustomerDetails extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 15.0),
-                    child: Center(
-                      child: Text(
-                        "Enter a valid email. we will send you a OTP number to validate your email.that email will use for future communication",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 18),
-                      ),
-                    ),
-                  ),
+                  // const Padding(
+                  //   padding: EdgeInsets.only(top: 15.0),
+                  //   child: Center(
+                  //     child: Text(
+                  //       "Enter a valid email. we will send you a OTP number to validate your email.that email will use for future communication",
+                  //       textAlign: TextAlign.center,
+                  //       style: TextStyle(fontSize: 18),
+                  //     ),
+                  //   ),
+                  // ),
 
                   const SizedBox(
                     height: 10,
                   ),
+
                   Center(
                       child: Text(
                     "Total Price: LKR" + price.toString(),
@@ -105,6 +107,8 @@ class CustomerDetails extends StatelessWidget {
                   //fsrt name
 
                   NormalInput(
+                    key: Key("firstNme"),
+                      keyboardType: TextInputType.text,
                       icon: const Icon(Icons.person_2_rounded),
                       controller: firstName,
                       labelText: 'First Name',
@@ -115,6 +119,8 @@ class CustomerDetails extends StatelessWidget {
                   //lastname
 
                   NormalInput(
+                    key: Key("lsstNAme"),
+                      keyboardType: TextInputType.text,
                       icon: const Icon(Icons.person_2_rounded),
                       controller: lastName,
                       labelText: 'Last Name',
@@ -123,6 +129,8 @@ class CustomerDetails extends StatelessWidget {
                   //email
 
                   NormalInput(
+                    key: Key("Email"),
+                      keyboardType: TextInputType.emailAddress,
                       icon: const Icon(Icons.email_rounded),
                       controller: email, // Replace with your controller
                       labelText: 'Email',
@@ -132,6 +140,8 @@ class CustomerDetails extends StatelessWidget {
                   //NIC
 
                   NormalInput(
+                    key: Key("NIC"),
+                      keyboardType: TextInputType.text,
                       icon: const Icon(Icons.perm_identity),
                       controller: NIC, // Replace with your controller
                       labelText: 'NIC',
@@ -140,13 +150,15 @@ class CustomerDetails extends StatelessWidget {
                   const SizedBox(height: 10),
                   //Mobile number
                   NormalInput(
+                    key: Key("mobile"),
+                      keyboardType: TextInputType.number,
                       icon: const Icon(Icons.mobile_friendly_rounded),
                       controller: mobile, // Replace with your controller
                       labelText: 'Mobile',
                       obscureText: false),
 
                   const SizedBox(
-                    height: 20,
+                    height: 50,
                   ),
 
                   //seat view button
@@ -163,6 +175,18 @@ class CustomerDetails extends StatelessWidget {
                                   BorderRadius.all(Radius.circular(10))),
                           child: TextButton(
                             onPressed: () {
+                              if (passengerCount == 0) {
+                                QuickAlert.show(
+                                  context: context,
+                                  type: QuickAlertType.error,
+                                  title: 'Oops...',
+                                  text: 'Select at least one seat',
+                                  onCancelBtnTap: () {
+                                    Get.back();
+                                  },
+                                );
+                                return;
+                              }
                               print(firstName.text);
 
                               //field fill checking
@@ -252,13 +276,14 @@ class CustomerDetails extends StatelessWidget {
         ],
       ),
       drawer: const CustomDrawer(),
+      bottomNavigationBar: Bottom_NavigationBar(),
     );
   }
 
   Future<void> loginDetails(String userId) async {
     final Map<String, dynamic> requestBody = {"userID": userId};
     final response = await http.post(
-      Uri.parse('http://$baseUrl_1:4000/popupform'),
+      Uri.parse('$baseUrl_1/popupform'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode(requestBody), // Encode the map as JSON
     );

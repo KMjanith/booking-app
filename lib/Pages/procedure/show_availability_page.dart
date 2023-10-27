@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-//import '../../servises/DatabaseHandeling/mongodb.dart';
 import '../../Models/Trainmodel.dart';
 import '../../servises/Search_api.dart';
 import '../widgets/AppBarCustom.dart';
 import '../widgets/AvailabilityTile.dart';
+import '../widgets/bottomNavigator.dart';
 import '../widgets/clipPath.dart';
 import '../widgets/drawer.dart';
 import 'Home.dart';
@@ -29,30 +29,21 @@ class TrainDisplay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SerachTrain searchTrain = SerachTrain();
+
     return Scaffold(
+      bottomNavigationBar: Bottom_NavigationBar(),
       body: Stack(children: [
-        /*Container(
-          decoration: BoxDecoration(color: Color.fromARGB(255, 213, 230, 245)),
-        ),*/
         const clipPath(),
-        const Positioned(
-            top: 120,
-            left: 80,
-            right: 0,
-            child: Text("Available Trains",
-                style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(255, 92, 7, 47)))),
+       
         Positioned(
-          top: 140,
+          top: 100,
           left: 0,
           right: 0,
           bottom: 20,
           child: SizedBox(
             height: 700,
             child: FutureBuilder(
-              //future: mongoDatabase.getDataStation(from, to, Date),
+             
               future: searchTrain.getTrains(
                   from, to, Actual_date, passengerCount, Actual_date),
               builder: (context, AsyncSnapshot snapshot) {
@@ -71,17 +62,26 @@ class TrainDisplay extends StatelessWidget {
                         snapshot.data.removeLast(); //pricelistobject
                     //print(priceList);
                     //print(snapshot.data);
-                    
+
                     return ListView.builder(
                       itemCount: totalData,
                       itemBuilder: (context, index) {
-                        return AvailabilityTile(
-                          Actual_date: Actual_date, //booking date
-                          from: from,
-                          to: to,
-                          passengers: passengerCount,
-                          data: TrainModel.fromJson(snapshot.data[index]),
-                          priceList: priceList,
+                        return Column(
+                          children: [
+                            Text("Available Train ${index + 1}",
+                                style: const TextStyle(
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color.fromARGB(255, 92, 7, 47))),
+                            AvailabilityTile(
+                              Actual_date: Actual_date, //booking date
+                              from: from,
+                              to: to,
+                              passengers: passengerCount,
+                              data: TrainModel.fromJson(snapshot.data[index]),
+                              priceList: priceList,
+                            ),
+                          ],
                         );
                       },
                     );
@@ -110,7 +110,6 @@ class TrainDisplay extends StatelessWidget {
               },
             ),
           ),
-          
         ),
         CustomAppBar(
           page: [FirstPage(), HomePage()],

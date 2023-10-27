@@ -137,6 +137,8 @@ class _PaymentFormState extends State<PaymentForm> {
                     ),
                   ),
                   NormalInput(
+                    key: Key("Card No"),
+                    keyboardType: TextInputType.number,
                       icon: const Icon(Icons.numbers),
                       controller: cardNo,
                       labelText: "card no",
@@ -149,6 +151,8 @@ class _PaymentFormState extends State<PaymentForm> {
                       Expanded(
                         //expire date
                         child: NormalInput(
+                          key: Key("date"),
+                          keyboardType: TextInputType.text,
                             icon: const Icon(Icons.data_exploration_rounded),
                             controller: expDate,
                             labelText: 'MM/YY',
@@ -157,6 +161,8 @@ class _PaymentFormState extends State<PaymentForm> {
                       Expanded(
                         //CVC
                         child: NormalInput(
+                          key: Key("CVC"),
+                          keyboardType: TextInputType.number,
                             icon: const Icon(Icons.comment_bank_rounded),
                             controller: CVC,
                             labelText: 'CSC',
@@ -216,6 +222,8 @@ class _PaymentFormState extends State<PaymentForm> {
                             color: Colors.white,
                             fontWeight: FontWeight.bold)),
                     onPressed: () async {
+
+                    
                       print(widget.ticket.firstName);
 
                       //save to daatabase
@@ -223,18 +231,7 @@ class _PaymentFormState extends State<PaymentForm> {
 
                       print(widget.finalSeatView);
 
-                      // for (int i = 0; i < widget.finalSeatView.length; i++) {
-                      //   if (widget.finalSeatView[i] == 2) {
-                      //     widget.finalSeatView[i] = 1;
-                      //   }
-                      // }
-
-                      // print("final seat view");
-                      // print(widget.finalSeatView);
-                      // mongoDatabase.updateTrainSheetView(
-                      //     AvailabilityTile.TrainID!,
-                      //     widget.finalSeatView,
-                      //     AvailabilityTile.ClassType!);
+                     
                     },
                   ),
                 ),

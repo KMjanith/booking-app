@@ -6,6 +6,7 @@ import '../../servises/AuthManager.dart';
 import '../Auth/SignUp.dart';
 import '../Auth/login.dart';
 import '../widgets/AppBarCustom.dart';
+import '../widgets/bottomNavigator.dart';
 import '../widgets/clipPath.dart';
 import '../widgets/drawer.dart';
 import '../widgets/input_fields/DateInput.dart';
@@ -26,7 +27,6 @@ class FirstPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
       body: Stack(
         children: [
           /*Container(
@@ -73,6 +73,7 @@ class FirstPage extends StatelessWidget {
                   ),
                   //From input
                   InputFieldDropDown(
+                    key: Key("fromInput"),
                     icon: const Icon(Icons.arrow_forward),
                     controller: _fromControler,
                     labelText: "From",
@@ -84,6 +85,7 @@ class FirstPage extends StatelessWidget {
 
                   //To input
                   InputFieldDropDown(
+                    key: Key("toInput"),
                     icon: const Icon(Icons.arrow_back),
                     controller: _toControler,
                     labelText: "To",
@@ -95,6 +97,7 @@ class FirstPage extends StatelessWidget {
 
                   //date input
                   DateInput(
+                      keys: Key("dateInput"),
                       birthDateController: _DateController,
                       selectedDate: _selectedDate),
 
@@ -104,6 +107,8 @@ class FirstPage extends StatelessWidget {
 
                   //passenger count input
                   NormalInput(
+                      key: Key("passengerInput"),
+                      keyboardType: TextInputType.number,
                       icon: const Icon(Icons.person),
                       controller: _PasegerCount,
                       labelText: "pasengers",
@@ -121,6 +126,7 @@ class FirstPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: TextButton(
+                        key: Key("available_trains"),
                         child: const Text("Available Trains",
                             style: TextStyle(
                                 fontSize: 20,
@@ -138,9 +144,17 @@ class FirstPage extends StatelessWidget {
                               text: 'Sorry,some fields are empty',
                             );
                             return;
+                          } else if (_fromControler.text == _toControler.text) {
+                            QuickAlert.show(
+                              context: context,
+                              type: QuickAlertType.error,
+                              title: 'Oops...',
+                              text:
+                                  'both stations are same.choose deferent stations',
+                            );
+                            return;
                           }
                           //print(_DateController.text);
-                          
 
                           Get.to(TrainDisplay(
                             Actual_date: _DateController.text,
@@ -160,7 +174,7 @@ class FirstPage extends StatelessWidget {
           if (!AuthManager.isLoggedIn)
             CustomAppBar(
               page: [LoginPage(), SignUpPage()],
-              name: const ["Log in", "Sign up"],
+              name: const ["Login", "Signup"],
             ),
           if (AuthManager.isLoggedIn)
             CustomAppBar(
@@ -169,7 +183,8 @@ class FirstPage extends StatelessWidget {
             ),
         ],
       ),
-       drawer: const CustomDrawer(), //side panel
+      drawer: const CustomDrawer(), //side panel
+      bottomNavigationBar: Bottom_NavigationBar(),
     );
   }
 

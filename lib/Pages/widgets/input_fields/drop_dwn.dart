@@ -1,14 +1,15 @@
 import "package:flutter/material.dart";
 import 'package:dropdown_search/dropdown_search.dart';
-import '../../../Models/stations.dart';
+import '../../../servises/constant.dart';
 
 class InputFieldDropDown extends StatefulWidget {
   final TextEditingController controller;
   final String labelText;
   final Icon icon;
+  final Key key;
 
   InputFieldDropDown(
-      {required this.controller, required this.labelText, required this.icon});
+      {required this.controller, required this.labelText, required this.icon,required this.key});
 
   @override
   State<InputFieldDropDown> createState() => _InputFieldState();
@@ -22,10 +23,12 @@ class _InputFieldState extends State<InputFieldDropDown> {
       child: Column(
         children: [
           Container(
+            key: widget.key,
             decoration: BoxDecoration(
                 color: Color.fromARGB(255, 255, 255, 255).withOpacity(0.001),
                 borderRadius: BorderRadius.circular(10)),
             child: DropdownSearch<String>(
+              
               popupProps: const PopupProps.menu(
                 showSelectedItems: true,
                 showSearchBox: true,

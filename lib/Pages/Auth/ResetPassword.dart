@@ -3,9 +3,11 @@ import '../../Models/resetPassword.dart';
 import '../../servises/Pass_Reset_Api.dart';
 import '../procedure/Home.dart';
 import '../widgets/AppBarCustom.dart';
+import '../widgets/bottomNavigator.dart';
 import '../widgets/clipPath.dart';
+import '../widgets/drawer.dart';
 import '../widgets/input_fields/normal_input.dart';
-import 'SignUp.dart';
+
 
 class PasswordReset extends StatelessWidget {
   final String email;
@@ -18,7 +20,7 @@ class PasswordReset extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
+      bottomNavigationBar: Bottom_NavigationBar(),
       body: Stack(
         children: [
           const clipPath(),
@@ -46,15 +48,19 @@ class PasswordReset extends StatelessWidget {
 
                   //email
                   NormalInput(
+                    key: Key("passwordInput1"),
+                    keyboardType: TextInputType.text,
                       controller: password_1,
                       labelText: "Enter Password",
                       obscureText: false,
-                      icon: const Icon(Icons.email)),
+                      icon: const Icon(Icons.password)),
                   const SizedBox(
                     height: 10,
                   ),
                   //password
                   NormalInput(
+                    key: Key("passwordInput2"),
+                    keyboardType: TextInputType.text,
                       controller: password_confirm,
                       labelText: "Confirm password",
                       obscureText: true,
@@ -95,11 +101,12 @@ class PasswordReset extends StatelessWidget {
             ),
           ),
           CustomAppBar(
-            page: [HomePage(), SignUpPage()],
-            name: const ["Home", "Sign up"],
+            page: [HomePage(),],
+            name: const ["Home"],
           ),
         ],
       ),
+      drawer: const CustomDrawer(), //side panel
     );
   }
 }

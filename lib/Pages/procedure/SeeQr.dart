@@ -9,7 +9,9 @@ import 'package:screenshot/screenshot.dart';
 
 import '../../servises/Cancel_api.dart';
 import '../widgets/AppBarCustom.dart';
+import '../widgets/bottomNavigator.dart';
 import '../widgets/clipPath.dart';
+import '../widgets/drawer.dart';
 import '../widgets/input_fields/normal_input.dart';
 import 'Home.dart';
 
@@ -29,6 +31,7 @@ class _SeeQrState extends State<SeeQr> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: Bottom_NavigationBar(),
       body: Stack(
         children: [
           const clipPath(),
@@ -74,6 +77,8 @@ class _SeeQrState extends State<SeeQr> {
 
                       //email
                       NormalInput(
+                        key: Key("EnterRef"),
+                        keyboardType: TextInputType.text,
                           icon: const Icon(Icons.numbers),
                           controller: ReferenceNo,
                           labelText: "Reference no",
@@ -111,6 +116,7 @@ class _SeeQrState extends State<SeeQr> {
           CustomAppBar(page: [HomePage()], name: ["Home"]),
         ],
       ),
+      drawer: const CustomDrawer(), //side panel
     );
   }
 
@@ -167,7 +173,7 @@ class _SeeQrState extends State<SeeQr> {
                           setState(() {
                           })
                         });
-                    const customDirectoryPath = '/storage/emulated/0/Train';
+                    const customDirectoryPath = '/storage/emulated/0/Download/Train';
                     final customDirectory = Directory(customDirectoryPath);
 
                     // Create the custom directory if it doesn't exist
@@ -193,7 +199,7 @@ class _SeeQrState extends State<SeeQr> {
                     QuickAlert.show(
                         context: context,
                         type: QuickAlertType.success,
-                        text: "you can find the qr code in Train folder which has newly created.",
+                        text: "you can find the qr code in Train folder which has newly created in Download folder.",
                         onConfirmBtnTap: () {
                           Navigator.pop(context);
                           Navigator.pop(context);

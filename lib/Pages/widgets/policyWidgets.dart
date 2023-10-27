@@ -5,7 +5,7 @@ class PolicyWidget extends StatelessWidget {
   final IconData icon;
   final Color color;
   final BuildContext context;
-  final String content;
+  final Widget content;
 
   const PolicyWidget(
       {super.key,
@@ -22,18 +22,20 @@ class PolicyWidget extends StatelessWidget {
         showModalBottomSheet(
           context: context,
           builder: (context) {
-            return Container(
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(30)),
-                  color: Color.fromARGB(255, 255, 255, 255)),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(content),
-                  )
-                ],
+            return SingleChildScrollView(
+              child: Container(
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(30)),
+                    color: Color.fromARGB(255, 255, 255, 255)),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child:  content,
+                    )
+                  ],
+                ),
               ),
             );
           },
