@@ -279,6 +279,7 @@ class CustomerDetails extends StatelessWidget {
     );
   }
 
+//if customer logged in this method will call and fill the details automatically
   Future<void> loginDetails(String userId) async {
     final Map<String, dynamic> requestBody = {"userID": userId};
     final response = await http.post(

@@ -9,6 +9,7 @@ final popular_content = [
 
 List<String> Staions = [
   "Ahangama",
+  "Alawwa",
   "Aluthgama",
   "Ambalangoda",
   "Ambalangoda",
@@ -86,11 +87,13 @@ List<String> Staions = [
   "Thambuththegama",
   "Thandikulam",
   "Trincomalee",
+  "Uduwara",
   "Unawatuna",
   "Valachchena",
   "Vauniya",
   "Veyangoda",
   "Veyangoda",
+  "Watagoda",
   "Waduwwa",
   "Weligama",
   "Welikanda",

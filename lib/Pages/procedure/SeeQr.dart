@@ -77,8 +77,8 @@ class _SeeQrState extends State<SeeQr> {
 
                       //email
                       NormalInput(
-                        key: Key("EnterRef"),
-                        keyboardType: TextInputType.text,
+                          key: Key("EnterRef"),
+                          keyboardType: TextInputType.text,
                           icon: const Icon(Icons.numbers),
                           controller: ReferenceNo,
                           labelText: "Reference no",
@@ -121,7 +121,6 @@ class _SeeQrState extends State<SeeQr> {
   }
 
   _makeQrImage() async {
-
     //Create an instance of ScreenshotController
     ScreenshotController screenshotController = ScreenshotController();
 
@@ -131,7 +130,8 @@ class _SeeQrState extends State<SeeQr> {
           type: QuickAlertType.error,
           title: "Please enter Re. No");
     } else {
-      String  Qrdata = await cancelBookingApi.GenerateQr(ReferenceNo.text);  //calling API
+      String Qrdata =
+          await cancelBookingApi.GenerateQr(ReferenceNo.text); //calling API
       setState(() {
         display = Column(
           children: [
@@ -170,10 +170,10 @@ class _SeeQrState extends State<SeeQr> {
                   onPressed: () async {
                     screenshotController.capture().then((image) => {
                           //Capture Done
-                          setState(() {
-                          })
+                          setState(() {})
                         });
-                    const customDirectoryPath = '/storage/emulated/0/Download/Train';
+                    const customDirectoryPath =
+                        '/storage/emulated/0/Download/Train';
                     final customDirectory = Directory(customDirectoryPath);
 
                     // Create the custom directory if it doesn't exist
@@ -183,9 +183,9 @@ class _SeeQrState extends State<SeeQr> {
                           'Custom directory created at: $customDirectoryPath');
                     }
 
-                    String fileName =
-                        DateTime.now().microsecondsSinceEpoch.toString();
-                    String path = '$customDirectoryPath/$fileName';
+                    // String fileName =
+                    //     DateTime.now().microsecondsSinceEpoch.toString();
+                    String path = '$customDirectoryPath/${ReferenceNo.text}';
 
                     screenshotController
                         .captureAndSave(
@@ -199,7 +199,8 @@ class _SeeQrState extends State<SeeQr> {
                     QuickAlert.show(
                         context: context,
                         type: QuickAlertType.success,
-                        text: "you can find the qr code in Train folder which has newly created in Download folder.",
+                        text:
+                            "you can find the qr code in Train folder which has newly created in Download folder.",
                         onConfirmBtnTap: () {
                           Navigator.pop(context);
                           Navigator.pop(context);

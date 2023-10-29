@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-//import 'package:testbookigapp/servises/DatabaseHandeling/mongodb.dart';
-
-//import 'package:testbookigapp/Pages/widgets/AvailabilityTile.dart';
-
 import '../../Models/Ticket.dart';
 import '../../Models/Trainmodel.dart';
 import '../../servises/Bookings_api.dart';

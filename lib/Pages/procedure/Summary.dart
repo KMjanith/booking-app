@@ -28,13 +28,11 @@ class TicketSummary extends StatelessWidget {
 
     return Scaffold(
       body: Stack(children: [
-       const clipPath(),
+        const clipPath(),
         ListView(
           children: [
-            
-          //show full ticket which can be downloaded in to the Train folder in the mobile
-             finalTicket,
-              
+            //show full ticket which can be downloaded in to the Train folder in the mobile
+            finalTicket,
 
             //odf download button
             Padding(
@@ -242,26 +240,20 @@ class TicketSummary extends StatelessWidget {
                                 'Custom directory created at: $customDirectoryPath');
                           }
 
-                          const filePath =
-                              '/storage/emulated/0/Download/Train/my_custom_pdf.pdf';
+                          // Split the RefNumber using "/"
+                          List<String> parts = finalTicket.RefNumber.split('/');
+
+                          // Remove the first portion (TBS) and join the remaining parts back
+                          String newRefNumber = parts.sublist(1).join('/');
+
+                          final filePath =
+                              '/storage/emulated/0/Download/Train/$newRefNumber.pdf';
 
                           // Save the PDF to the custom path
                           final file = File(filePath);
                           await file.writeAsBytes(await pdf.save());
 
-                          // String fileName =
-                          //     DateTime.now().microsecondsSinceEpoch.toString();
-                          // String path = '$customDirectoryPath/$fileName';
-
-                          // screenshotController
-                          //     .captureAndSave(
-                          //       path,
-                          //       pixelRatio: 2.0,
-                          //       delay: const Duration(milliseconds: 10),
-                          //     )
-                          //     .then((value) => print('Saved'));
-
-                          //print('PDF saved to $filePath');
+                         
                           // ignore: use_build_context_synchronously
                           QuickAlert.show(
                               context: context,

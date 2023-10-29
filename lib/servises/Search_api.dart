@@ -33,7 +33,7 @@ class SerachTrain {
     final classPrices = {"ticketPrices": decodedJson[1]};
 
     decodedJson[0].add(classPrices);
-    print(decodedJson[0].runtimeType);
+    //print(decodedJson[0].runtimeType);
     List<Map<String, dynamic>> finalTrains = [];
     for (int i = 0; i < decodedJson[0].length; i++) {
       finalTrains.add(decodedJson[0][i]);

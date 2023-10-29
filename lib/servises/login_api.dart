@@ -38,32 +38,7 @@ class ApiServiceLogin {
       AuthManager.login(); //setting the logged in user true
 
       return response.statusCode;
-      // if (response.statusCode == 200) {
-      //   // Dismiss the loading indicator
-      //   Navigator.of(context, rootNavigator: true).pop();
-
-      //   // ignore: use_build_context_synchronously
-      //   QuickAlert.show(
-      //     context: context,
-      //     type: QuickAlertType.success,
-      //     title: 'Great',
-      //     text: 'Successfully logged in',
-      //     onConfirmBtnTap: () {
-      //       Get.offAll(HomePage());
-      //     },
-      //   );
-      // } else {
-      //   // Dismiss the loading indicator
-      //   // ignore: use_build_context_synchronously
-      //   Navigator.of(context, rootNavigator: true).pop();
-
-      //   // ignore: use_build_context_synchronously
-      //   QuickAlert.show(
-      //       context: context,
-      //       type: QuickAlertType.error,
-      //       title: 'Oops..',
-      //       text: 'Check username and password again or verify your email');
-      // }
+      
     
   }
 

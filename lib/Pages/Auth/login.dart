@@ -118,11 +118,13 @@ class LoginPage extends StatelessWidget {
                             },
                           );
 
-                          await Future.delayed(const Duration(seconds: 1));
+                          
 
                           // ignore: use_build_context_synchronously
                           final response = await _apiService.login(
                               context, email.text, password.text, client);
+
+                          await Future.delayed(const Duration(seconds: 1));
 
                           if (response == 200) {
                             // Dismiss the loading indicator

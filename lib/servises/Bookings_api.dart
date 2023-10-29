@@ -88,6 +88,8 @@ class Booking_api {
           Navigator.pop(context);
           Navigator.pop(context);
           //Go to Qr display page
+          //before going to the summary page system go to the final ticket page to make the ticket summary widget.
+          // in there the screenshot of the QR code will take and save in to the local storage
           Get.off(TicketSummary(
               finalTicket:
                   FInalTicket(RefNumber: response.body, ticket: ticket)));

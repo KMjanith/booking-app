@@ -80,6 +80,8 @@ class FInalTicket extends StatelessWidget {
                       TicketAttribute(
                           attribute: "Price",
                           value: "LKR." + ticket.Price.toString()),
+
+                          //taking a screenshot of the Qr code and save it into the local storage
                       Screenshot(
                         controller: screenshotController,
                         child: Container(
@@ -112,8 +114,14 @@ class FInalTicket extends StatelessWidget {
         await customDirectory.create(recursive: true);
         print('Custom directory created at: $customDirectoryPath');
       }
-      String fileName = DateTime.now().microsecondsSinceEpoch.toString();
-      String path = '$customDirectoryPath/$fileName';
+      //String fileName = DateTime.now().microsecondsSinceEpoch.toString();
+      // Split the RefNumber using "/"
+      List<String> parts = RefNumber.split('/');
+
+      // Remove the first portion (TBS) and join the remaining parts back
+      String newRefNumber = parts.sublist(1).join('/');
+
+      String path = '$customDirectoryPath/$newRefNumber';
 
       screenshotController
           .captureAndSave(

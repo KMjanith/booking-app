@@ -8,7 +8,7 @@ class ApiService {
 
   Future<Map<String, dynamic>> addItem(Item item, http.Client client) async {
     final response = await http.post(
-      Uri.parse('$baseUrl'),
+      Uri.parse(baseUrl),
       headers: {'Content-Type': 'application/json'},
       body: json.encode(item.toJson()),
     );
