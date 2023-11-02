@@ -3,7 +3,10 @@
 <p>install flutter here https://docs.flutter.dev/get-started/install . Then clone the repo</p>
 <br>
 <h3>2. download the packages></h3>
-<p>release 'flutter pub get' commmand to download the packages</p>
+<p>download the packages</p>
+```
+flutter pub get
+```
 <br>
 <h3>3. changes to pubspec.yaml file</h3>
 <p>  environment:
