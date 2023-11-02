@@ -1,25 +1,20 @@
-#geting started
-###wqwqwqwqqw:
-1.sasasasasa:
-wewewweqewe
+# 1st method
+## 1. Getting Started:
+install flutter here https://docs.flutter.dev/get-started/install . Then clone the repo
+## 2. download the packages></h3>
+download the packages , release
 ```
-asasasa
-````
-<h1>1st method</h1>
-<h3>1. Getting Started</h3>
-<p>install flutter here https://docs.flutter.dev/get-started/install . Then clone the repo</p>
-<br>
-<h3>2. download the packages></h3>
-<p>download the packages, release  flutter pub get</p>
-<br>
-<h3>3. changes to pubspec.yaml file</h3>
-<p>  environment:
+  flutter pub get
+```
+## 3. changes to pubspec.yaml file</h3>
+environment:
   sdk: ">=3.2.0-171.0.dev <4.0.0"
-     <br>
-  replace the sdk version comaptible with our version. 
-     <br>
-  to see the version enter flutter --version command in your command prompt and add the Dart SDK version here.</p>
-<br>
+replace the sdk version comaptible with your version. 
+to see the version enter 
+  ```
+  flutter --version
+  ```
+command in your command prompt and add the Dart SDK version here.
 <h1>2nd method</h1>
 <p>
 1. create a new flutter project in a new directory
