@@ -15,15 +15,15 @@
 <br>
 <h1>2nd method</h1>
 <p>
-1. create a new flutter projetc in a new directory
+1. create a new flutter project in a new directory
    <br>
-2. download a zip off this projects.
+2. download a zip of this projects.
    <br>
-3. then replace the lib folder of your newly craeted project with the zip.
+3. then replace the lib folder of your newly craeted project with the zip's lib.
    <br>
-4. copy the dependency list in the pubpec.yaml to the new project.
+4. copy the dev dependencies and other dependencies in the pubpec.yaml to the new project.
    <br>
-5. make cahnges to the build.gradle files.(app level and the project level)
+5. make cahnges to the build.gradle files accordingly.(app level and the project level)
    <br>
 6. make changes to the manifest file wich is in "..\android\app\src\main\AndroidManifest.xml"
    <br>
