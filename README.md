@@ -1,6 +1,6 @@
 <h1>1st method</h1>
 <h3>1. Getting Started</h3>
-<p>install flutter here https://docs.flutter.dev/get-started/install and clane the repo</p>
+<p>install flutter here https://docs.flutter.dev/get-started/install . Then clone the repo</p>
 <br>
 <h3>2. download the packages></h3>
 <p>release 'flutter pub get' commmand to download the packages</p>
