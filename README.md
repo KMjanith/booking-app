@@ -1,3 +1,10 @@
+#geting started
+###wqwqwqwqqw:
+1.sasasasasa:
+wewewweqewe
+```
+asasasa
+````
 <h1>1st method</h1>
 <h3>1. Getting Started</h3>
 <p>install flutter here https://docs.flutter.dev/get-started/install . Then clone the repo</p>
