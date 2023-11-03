@@ -34,5 +34,6 @@ command in your command prompt and add the Dart SDK version here.
 </p>
 
 <h2>step by step manual to the app users</h2>
+user_manual_app.pdf: https://github.com/KMjanith/booking-app/files/13233153/user_manual_app.pdf
 <br>
-[user_manual_app.pdf](https://github.com/KMjanith/booking-app/files/13233153/user_manual_app.pdf)
+download App Here: https://dms.uom.lk/s/zPsKPYbsAAw5Tmr
